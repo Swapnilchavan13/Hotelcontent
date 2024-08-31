@@ -1,0 +1,141 @@
+/* login.css */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #e0e7ff; /* Light background for a professional look */
+    background-image: linear-gradient(to bottom right, #f3f4f6, #e0e7ff); /* Subtle gradient */
+  }
+  
+  #centreimgdiv {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .loginpinimg {
+    max-width: 120px;
+    height: auto;
+  }
+  
+  .lheading {
+    font-size: 26px;
+    font-weight: 600;
+    color: #1f2937; /* Dark gray for the heading */
+    margin-top: 10px;
+    line-height: 1.4;
+  }
+  
+  .login-form {
+    background: #ffffff; /* White background for contrast */
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Softer, more pronounced shadow */
+    width: 100%;
+    max-width: 420px;
+    box-sizing: border-box;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  input[type="tel"],
+  input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1; /* Light border color */
+    border-radius: 5px;
+    font-size: 16px;
+    color: #374151; /* Slightly darker text */
+  }
+  
+  input[type="tel"]::placeholder,
+  input[type="password"]::placeholder {
+    color: #9ca3af; /* Light gray for placeholders */
+  }
+  
+  button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3b82f6; /* Blue accent for the button */
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  button:hover {
+    background-color: #2563eb; /* Darker blue on hover */
+    transform: translateY(-2px); /* Subtle lift effect */
+  }
+  
+  .error-message {
+    color: #ef4444; /* Red for error message */
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  p {
+    margin: 5px 0;
+    color: #1f2937; /* Darker gray for paragraph text */
+    font-size: 14px;
+  }
+  
+  p:hover {
+    color: #3b82f6; /* Blue accent on hover */
+    cursor: pointer;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .login-container {
+      padding: 15px;
+    }
+  
+    .lheading {
+      font-size: 22px;
+    }
+  
+    .login-form {
+      padding: 20px;
+    }
+  
+    input[type="tel"],
+    input[type="password"] {
+      font-size: 14px;
+    }
+  
+    button {
+      font-size: 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .login-container {
+      padding: 10px;
+    }
+  
+    .lheading {
+      font-size: 20px;
+    }
+  
+    .login-form {
+      padding: 15px;
+    }
+  
+    input[type="tel"],
+    input[type="password"] {
+      font-size: 13px;
+    }
+  
+    button {
+      font-size: 15px;
+    }
+  }
+  

@@ -1,0 +1,151 @@
+/* Dashboard Header */
+.dashboard-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+    background-color: #f1f1f1; /* Ensure consistent background */
+  }
+  
+  /* Logout Button */
+  .logout-button {
+    background-color: #023e8a;
+    color: #fff;
+    padding: 10px 20px;
+    width: 100px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+  }
+  
+  .logout-button:hover {
+    background-color: #03045e;
+    transform: scale(1.05);
+  }
+  
+  /* Category Buttons */
+  .category-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+  }
+  
+  .category-button {
+    background-color: #0096c7;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, transform 0.2s;
+  }
+  
+  .category-button:hover {
+    background-color: #005f73;
+    transform: scale(1.05);
+  }
+  
+  .category-button.active {
+    background-color: #023e8a;
+  }
+  
+  /* Subcategory Buttons */
+  .subcategory-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .subcategory-button {
+    background-color: #e0f7fa;
+    color: #00796b;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background-color 0.3s ease, transform 0.2s;
+  }
+  
+  .subcategory-button:hover {
+    background-color: #b2dfdb;
+    transform: scale(1.05);
+  }
+  
+  .subcategory-button.active {
+    background-color: #00796b;
+    color: #fff;
+  }
+  
+  /* Data List Grid */
+  .data-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+  
+  /* Data Item Card */
+  .data-item {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .data-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #0077b6;
+  }
+  
+  .data-item p {
+    font-size: 0.95rem;
+    color: #666;
+  }
+  
+  .data-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .data-list {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      padding: 10px;
+    }
+  
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .category-buttons {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .subcategory-buttons {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .logout-button {
+      font-size: 0.85rem;
+      padding: 8px 16px;
+    }
+  
+    .category-button, .subcategory-button {
+      font-size: 0.85rem;
+      padding: 8px 16px;
+    }
+  }
+  
