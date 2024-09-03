@@ -27,6 +27,15 @@
 .App-link {
   color: #61dafb;
 }
+/* App.css */
+
+.custom-toast {
+  max-width: 100%; /* Prevents text wrapping by using full width */
+  white-space: nowrap; /* Prevents the text from wrapping */
+  overflow: hidden; /* Hides any overflow text */
+  text-overflow: ellipsis; /* Adds ellipsis if the text is too long */
+}
+
 
 @keyframes App-logo-spin {
   from {

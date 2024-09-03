@@ -28,7 +28,8 @@
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin: 20px 0;
+    width: 90%;
+    margin: auto;
   }
   
   .category-button {
@@ -54,10 +55,13 @@
   /* Subcategory Buttons */
   .subcategory-buttons {
     display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
+    justify-content: center; /* Centers the buttons horizontally */
+    gap: 10px; /* Space between the buttons */
+    margin: 20px auto; /* 20px margin top and bottom, auto centers horizontally */
+    width: 90%; /* Ensures the buttons take only as much space as needed */
   }
+  
+  
   
   .subcategory-button {
     background-color: #e0f7fa;
@@ -87,7 +91,7 @@
     gap: 20px;
     padding: 20px;
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 90%;
   }
   
   /* Data Item Card */
@@ -97,6 +101,14 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .data-image {
+    width: 100%;
+    max-width: 400px; /* Set max-width to control image size */
+    height: auto;
+    margin-top: 8px;
+    border-radius: 4px;
   }
   
   .data-item h3 {

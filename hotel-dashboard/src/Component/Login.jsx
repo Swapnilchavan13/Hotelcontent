@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from './AuthContex';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify'; // Import toast
 import '../styles/login.css';
 
 export const Login = () => {
@@ -19,6 +20,7 @@ export const Login = () => {
         setMerchants(data);
       } catch (error) {
         console.error('Error fetching merchants:', error);
+        toast.error('Error fetching merchant data. Please try again later.');
       }
     };
 
@@ -34,9 +36,11 @@ export const Login = () => {
 
     if (user) {
       login(user.contactPhoneNumber); // Call login from AuthContext with user's phone number
+      toast.success('Login successful!');
       navigate('/dashboard'); // Use navigate for redirection
     } else {
       setError('Invalid mobile number or PIN');
+      toast.error('Invalid mobile number or PIN');
     }
   };
 
@@ -48,12 +52,8 @@ export const Login = () => {
       backgroundRepeat: 'no-repeat' 
     }}>
       <div id='centreimgdiv'>
-      <img className='loginpinimg' src="Localite_icon.png" alt="" />
-      {/* <img className='loginpinimg2' width="100px" src="/blue-logo.png" alt="" />
-      <br />
-      <p className='ptaglogin'>Your partner for Hyperlocal Marketing</p>
-      <br /> */}
-      <br />
+        <img className='loginpinimg' src="Localite_icon.png" alt="" />
+        <br />
       </div>
       <p className='lheading'>Login Page</p>
       <form onSubmit={handleSubmit} className="login-form">

@@ -1,0 +1,168 @@
+/* cms.css */
+
+/* Container for the entire CMS dashboard */
+.cms-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Heading styles */
+  .cms-heading, .cms-form-heading, .cms-list-heading {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Category and Subcategory selectors */
+  .cms-category-selector, .cms-subcategory-selector {
+    margin-bottom: 30px;
+  }
+  
+  .cms-selector-heading {
+    color: #444;
+    margin-bottom: 10px;
+  }
+  
+  /* Button group styles */
+  .cms-button-group {
+    display: flex;
+    /* flex-wrap: wrap; */
+    gap: 15px;
+    justify-content: center;
+  }
+  
+  /* Styles for category and subcategory buttons */
+  .cms-category-button, .cms-subcategory-button {
+    padding: 10px 20px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: #007bff;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 14px;
+  }
+  
+  .cms-category-button.cms-active, .cms-subcategory-button.cms-active {
+    background-color: #007bff;
+    color: #ffffff;
+  }
+  
+  .cms-category-button:hover, .cms-subcategory-button:hover {
+    background-color: #0056b3;
+    color: #ffffff;
+  }
+  
+  /* Form container styles */
+  .cms-form-container {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cms-data-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Form input and textarea styles */
+  .cms-form-input, .cms-form-textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .cms-form-textarea {
+    resize: vertical;
+    height: 100px;
+  }
+  
+  /* Button styles for form submission */
+  .cms-submit-button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: #ffffff;
+    cursor: pointer;
+    width: 30%;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .cms-submit-button:hover {
+    background-color: #218838;
+  }
+  
+  /* Data list styles */
+  .cms-data-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  /* Styles for individual data items */
+  .cms-data-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #ffffff;
+    padding: 15px;
+    width: calc(33.333% - 20px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .cms-data-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .cms-data-title {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .cms-data-description {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  /* Button styles for editing and deleting data */
+  .cms-edit-button, .cms-delete-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 5px;
+  }
+  
+  .cms-edit-button {
+    background-color: #28a745;
+    color: #ffffff;
+  }
+  
+  .cms-edit-button:hover {
+    background-color: #218838;
+  }
+  
+  .cms-delete-button {
+    background-color: #dc3545;
+    color: #ffffff;
+  }
+  
+  .cms-delete-button:hover {
+    background-color: #c82333;
+  }
+  
