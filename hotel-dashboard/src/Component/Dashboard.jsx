@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useAuth } from './AuthContex';
 import '../styles/dashboard.css'; // Import a CSS file for styling
+import { Link } from 'react-router-dom';
 
 // Sample Data
 const data = [
   { category: 'Knowledge Portal', subCategory: 'GHG Emissions', title: 'Introduction', description: 'Overview of GHG emissions and their impact', image: 'https://www.epa.gov/system/files/styles/large/private/images/2024-04/gases-by-fluorinated-2024.png?itok=8SHsTr-2' },
   { category: 'Knowledge Portal', subCategory: 'GHG Emissions', title: 'Measurement Toolkit', description: 'Videos, text manuals, and presentations on measuring Scope 1 and Scope 2 emissions', image:'https://www.measurement-toolkit.org/images/logos/main-logo.png' },
+  { category: 'Knowledge Portal', subCategory: 'GHG Emissions', title: 'Mitigation Strategies', description: 'Best practices and case studies for reducing GHG emissions', image:'https://media.licdn.com/dms/image/D4D12AQF4Ddxm2FvBTg/article-cover_image-shrink_600_2000/0/1676622136261?e=2147483647&v=beta&t=a4-rINRixggoN5iEa9DuPJV1gtEOnTsE_ggZ4temkOM' },
   { category: 'Knowledge Portal', subCategory: 'GHG Emissions', title: 'Mitigation Strategies', description: 'Best practices and case studies for reducing GHG emissions', image:'https://media.licdn.com/dms/image/D4D12AQF4Ddxm2FvBTg/article-cover_image-shrink_600_2000/0/1676622136261?e=2147483647&v=beta&t=a4-rINRixggoN5iEa9DuPJV1gtEOnTsE_ggZ4temkOM' },
   { category: 'Knowledge Portal', subCategory: 'Water Management', title: 'Introduction', description: 'Overview of water management and harvesting techniques', image: 'https://www.civilengineer9.com/wp-content/uploads/2019/04/Sustainable-Water-conservation-1024x673.jpg' },
   { category: 'Knowledge Portal', subCategory: 'Water Management', title: 'Water Budgets', description: 'Guidelines and examples for creating water budgets', image:'https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-3-031-51083-0_17/MediaObjects/326208_1_En_17_Fig3_HTML.png' },
@@ -31,36 +33,43 @@ export const Dashboard = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedSubCategory, setSelectedSubCategory] = useState('');
 
-  // Function to handle category selection
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
-    setSelectedSubCategory(''); // Reset subcategory on category change
+    setSelectedSubCategory('');
   };
 
-  // Function to handle subcategory selection
   const handleSubCategoryChange = (subCategory) => {
     setSelectedSubCategory(subCategory);
   };
 
-  // Get unique subcategories based on selected category
   const subCategories = Array.from(new Set(data
     .filter(item => selectedCategory === 'All' || item.category === selectedCategory)
     .map(item => item.subCategory)
   ));
 
-  // Filter data based on the selected category and subcategory
   const filteredData = data.filter(item => {
     if (selectedCategory !== 'All' && item.category !== selectedCategory) return false;
     if (selectedSubCategory && item.subCategory !== selectedSubCategory) return false;
     return true;
   });
 
+  const groupedData = filteredData.reduce((acc, item) => {
+    if (!acc[item.subCategory]) {
+      acc[item.subCategory] = [];
+    }
+    acc[item.subCategory].push(item);
+    return acc;
+  }, {});
+
   return (
     <>
-      <h1>Welcome to Dashboard, {user ? user.personName : 'Guest'}</h1>
+      <div className='dashboardmain'>
+        <h1>Welcome to Sustainability Management Dashboard</h1>
+        <h3>We are excited to introduce you to our new platform, designed to be your central hub for managing and tracking all aspects of sustainability within our organization. Here, you will find a wealth of resources, tools, and insights to help you achieve your sustainability goals more effectively.</h3>
+      </div>
 
-      {/* Category Selection Buttons */}
-      <div className='category-buttons'>
+      <div className='category-buttons' id='categorybuttons'>
+        {/* Category Selection Buttons */}
         <button className={`category-button ${selectedCategory === 'All' ? 'active' : ''}`} onClick={() => handleCategoryChange('All')}>All Categories</button>
         <button className={`category-button ${selectedCategory === 'Knowledge Portal' ? 'active' : ''}`} onClick={() => handleCategoryChange('Knowledge Portal')}>Knowledge Portal</button>
         <button className={`category-button ${selectedCategory === 'Paid Tools' ? 'active' : ''}`} onClick={() => handleCategoryChange('Paid Tools')}>Paid Tools</button>
@@ -68,41 +77,33 @@ export const Dashboard = () => {
         <button className={`category-button ${selectedCategory === 'Marketplace' ? 'active' : ''}`} onClick={() => handleCategoryChange('Marketplace')}>Marketplace</button>
       </div>
 
-      {/* Subcategory Selection Buttons */}
       {selectedCategory !== 'All' && (
-        <div className='subcategory-buttons'>
+        <div className='subcategory-buttons' id='subcategorybuttons'>
           {subCategories.map((subCategory, index) => (
             <button key={index}
-                    className={`subcategory-button ${selectedSubCategory === subCategory ? 'active' : ''}`}
-                    onClick={() => handleSubCategoryChange(subCategory)}>
+              className={`subcategory-button ${selectedSubCategory === subCategory ? 'active' : ''}`}
+              onClick={() => handleSubCategoryChange(subCategory)}>
               {subCategory || 'All'}
             </button>
           ))}
         </div>
       )}
 
-      {/* Display Filtered Data */}
-      <div className='data-list'>
-  {filteredData.map((item, index) => (
-    <div
-      key={index}
-      className='data-item'
-      // Conditionally add the onClick handler for the specific item
-      onClick={
-        item.title === 'Dashboard' && item.subCategory === 'Emissions Measurement'
-          ? () => window.open('https://climescore.com/client/login', '_blank')
-          : null
-      }
-      style={{ cursor: item.title === 'Dashboard' && item.subCategory === 'Emissions Measurement' ? 'pointer' : 'default' }}
-      >
-      <h3>{item.subCategory} - {item.title}</h3>
-      {item.image && <img src={item.image} alt={`${item.title} image`} className='data-image' />}
-      <p>{item.description}</p>
-      {/* Render the image */}
-    </div>
-  ))}
-</div>
-
+      {Object.keys(groupedData).map((subCategory, index) => (
+        <div key={index} className='category-section'>
+          <h2>{subCategory}</h2>
+          <div className='image-scroll'>
+            {groupedData[subCategory].map((item, idx) => (
+              <Link to={`/detail/${encodeURIComponent(item.title)}`} key={idx} className='data-item'>
+                {/* Wrap the item with Link to redirect to DetailPage */}
+                <h3>{item.title}</h3>
+                {item.image && <img src={item.image} alt={`${item.title} image`} className='data-image' />}
+                <p>{item.description}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      ))}
 
       <div className='dashboard-header'>
         <button className='logout-button' onClick={logout}>Logout</button>

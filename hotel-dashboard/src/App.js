@@ -9,6 +9,7 @@ import { Navbar } from './Component/Navbar';
 import { Dashboard } from './Component/Dashboard';
 import { Home } from './Component/Home';
 import { CMSDashboard } from './Component/CMSDashboard';
+import { DetailPage } from './Component/DetailPage';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cms" element={<CMSDashboard />} />
+          <Route path='/detail/:title' element={<DetailPage />} />
           <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
 
         </Routes>

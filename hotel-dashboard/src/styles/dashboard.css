@@ -5,6 +5,20 @@
     padding: 20px;
     background-color: #f1f1f1; /* Ensure consistent background */
   }
+
+  Link{
+    text-decoration: none;
+  }
+
+  .dashboardmain{
+    text-align: center;
+    margin: 10px;
+    width: auto;
+    background-color: #d5d5d6;
+    color: rgb(85, 83, 83);
+    border-radius: 10px;
+    padding: 10px 70px;
+  }
   
   /* Logout Button */
   .logout-button {
@@ -22,6 +36,12 @@
     background-color: #03045e;
     transform: scale(1.05);
   }
+
+  .category-section{
+    padding: 0px 5px;
+  }
+
+ 
   
   /* Category Buttons */
   .category-buttons {
@@ -96,6 +116,7 @@
   
   /* Data Item Card */
   .data-item {
+    text-decoration: none;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -140,14 +161,20 @@
   }
   
   @media (max-width: 480px) {
-    .category-buttons {
-      flex-direction: column;
-      gap: 10px;
+
+    .dashboardmain{
+      padding: 5px 2px;
+      font-size: 10px;
+    }
+    
+    #categorybuttons {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
     }
   
-    .subcategory-buttons {
-      flex-direction: column;
-      gap: 10px;
+    #subcategorybuttons {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
     }
   
     .logout-button {
@@ -161,3 +188,72 @@
     }
   }
   
+
+  .category-buttons,
+.subcategory-buttons {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.category-buttons button,
+.subcategory-buttons button {
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.image-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 10px 0;
+  scrollbar-width: none; /* Firefox */
+}
+
+.image-scroll::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.data-item {
+  width: 30%; 
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+.data-item img {
+  width: 60%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.category-section {
+  margin-bottom: 40px;
+}
+
+.category-section h2 {
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .data-item {
+    min-width: 250px; /* Adjust for smaller screens */
+  }
+}
+
+.logout-button {
+  padding: 10px 20px;
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
