@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/cms.css';
+import { LoadingPopup } from './LoadingPopup';
 
 // Define API endpoints
 const API_BASE_URL = 'https://localitebackend.localite.services';
@@ -7,6 +8,7 @@ const GET_CMS_DATA_URL = `${API_BASE_URL}/getcmsdata`;
 const ADD_CMS_DATA_URL = `${API_BASE_URL}/addcmsdata`;
 const DELETE_CMS_DATA_URL = `${API_BASE_URL}/cms`;
 const UPDATE_CMS_DATA_URL = (id) => `${API_BASE_URL}/cms/${id}`;
+
 
 export const CMSDashboard = () => {
   const [categories] = useState(['Knowledge Portal', 'Marketplace']);
@@ -26,6 +28,7 @@ export const CMSDashboard = () => {
   const [editing, setEditing] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedImages, setSelectedImages] = useState([]);
+  const [showLoadingPopup, setShowLoadingPopup] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -76,6 +79,7 @@ export const CMSDashboard = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setShowLoadingPopup(true);
 
     const formDataToSubmit = new FormData();
     formDataToSubmit.append('title', formData.title);
@@ -112,6 +116,7 @@ export const CMSDashboard = () => {
       console.error('Error posting data:', error);
     } finally {
       setIsSubmitting(false);
+      setShowLoadingPopup(false);
     }
   };
 
@@ -179,6 +184,7 @@ export const CMSDashboard = () => {
 
   return (
     <div className='cms-container'>
+      {showLoadingPopup && <LoadingPopup />}
       <h1 className='cms-heading'>CMS Dashboard</h1>
       <div className='cms-category-selector'>
         <h2 className='cms-selector-heading'>Select Category</h2>
@@ -261,20 +267,19 @@ export const CMSDashboard = () => {
               ))}
             </div>
           )}
-          <label>Upload Files</label>
+          <label>Files</label>
           <input
             type="file"
             name="files"
-            accept=".pdf, .ppt, .xls, .xlsx"
             multiple
             onChange={handleFormChange}
             className='cms-form-input'
           />
-          <label>Add Video Links</label>
+          <label>Videos</label>
           <input
             type="text"
             name="videos"
-            placeholder="Video URLs (comma-separated)"
+            placeholder="Video URLs (comma separated)"
             value={formData.videos}
             onChange={handleFormChange}
             className='cms-form-input'
