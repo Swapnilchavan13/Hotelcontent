@@ -81,8 +81,7 @@
     width: 90%; /* Ensures the buttons take only as much space as needed */
   }
   
-  
-  
+
   .subcategory-button {
     background-color: #e0f7fa;
     color: #00796b;
@@ -147,6 +146,27 @@
     transform: translateY(-5px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
   }
+
+  .cms-data-thumbnail {
+    margin-right: 10px;
+  }
+  
+  .cms-data-file-link {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .cms-data-video-link {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .cms-selected-image {
+    margin: 5px;
+    max-width: 150px;
+    height: auto;
+  }
+  
   
   /* Responsive Adjustments */
   @media (max-width: 768px) {
@@ -232,6 +252,10 @@
 
 .category-section h2 {
   margin-bottom: 10px;
+}
+
+.dltbtn{
+  background-color: rgb(229, 81, 81);
 }
 
 @media (max-width: 768px) {

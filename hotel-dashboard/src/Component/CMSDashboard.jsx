@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/cms.css';
 
+// Define API endpoints
+const API_BASE_URL = 'https://localitebackend.localite.services';
+const GET_CMS_DATA_URL = `${API_BASE_URL}/getcmsdata`;
+const ADD_CMS_DATA_URL = `${API_BASE_URL}/addcmsdata`;
+const DELETE_CMS_DATA_URL = `${API_BASE_URL}/cms`;
+const UPDATE_CMS_DATA_URL = (id) => `${API_BASE_URL}/cms/${id}`;
+
 export const CMSDashboard = () => {
   const [categories] = useState(['Knowledge Portal', 'Marketplace']);
   const [subCategories, setSubCategories] = useState([]);
@@ -10,13 +17,15 @@ export const CMSDashboard = () => {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    images: [], // To store multiple images as files
-    videos: '', // Field to store video URLs
-    detailedText: '', // New field for detailed text
-    files: [], // New field to store multiple files like PDFs, PPTs, Excel files
+    images: [],
+    videos: '',
+    detailedText: '',
+    files: [],
     subCategory: ''
   });
   const [editing, setEditing] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedImages, setSelectedImages] = useState([]);
 
   useEffect(() => {
     fetchData();
@@ -25,7 +34,7 @@ export const CMSDashboard = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch('http://localhost:3005/getcmsdata'); // Fetch from the Express API
+      const response = await fetch(GET_CMS_DATA_URL);
       const data = await response.json();
       setData(data);
     } catch (error) {
@@ -54,7 +63,10 @@ export const CMSDashboard = () => {
 
   const handleFormChange = (e) => {
     const { name, value, files } = e.target;
-    if (name === 'images' || name === 'files') {
+    if (name === 'images') {
+      setFormData({ ...formData, [name]: Array.from(files) });
+      setSelectedImages(Array.from(files).map(file => URL.createObjectURL(file)));
+    } else if (name === 'files') {
       setFormData({ ...formData, [name]: Array.from(files) });
     } else {
       setFormData({ ...formData, [name]: value });
@@ -63,6 +75,7 @@ export const CMSDashboard = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     const formDataToSubmit = new FormData();
     formDataToSubmit.append('title', formData.title);
@@ -80,7 +93,7 @@ export const CMSDashboard = () => {
     });
 
     try {
-      await fetch('http://localhost:3005/addcmsdata', {
+      await fetch(ADD_CMS_DATA_URL, {
         method: 'POST',
         body: formDataToSubmit,
       });
@@ -93,15 +106,18 @@ export const CMSDashboard = () => {
         files: [],
         subCategory: ''
       });
+      setSelectedImages([]);
       fetchData();
     } catch (error) {
       console.error('Error posting data:', error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:3005/cms/${id}`, {
+      await fetch(`${DELETE_CMS_DATA_URL}/${id}`, {
         method: 'DELETE',
       });
       fetchData();
@@ -140,7 +156,7 @@ export const CMSDashboard = () => {
     });
 
     try {
-      await fetch(`http://localhost:3005/cms/${editing}`, {
+      await fetch(UPDATE_CMS_DATA_URL(editing), {
         method: 'PUT',
         body: updatedFormData,
       });
@@ -153,6 +169,7 @@ export const CMSDashboard = () => {
         files: [],
         subCategory: ''
       });
+      setSelectedImages([]);
       setEditing(null);
       fetchData();
     } catch (error) {
@@ -196,7 +213,7 @@ export const CMSDashboard = () => {
       <div className='cms-form-container'>
         <h2 className='cms-form-heading'>{editing ? 'Edit Data' : 'Add Data'}</h2>
         <form onSubmit={editing ? handleUpdate : handleSubmit} className='cms-data-form'>
-          <lable>Title</lable>
+          <label>Title</label>
           <input
             type="text"
             name="title"
@@ -206,7 +223,7 @@ export const CMSDashboard = () => {
             required
             className='cms-form-input'
           />
-          <lable>Summary</lable>
+          <label>Summary</label>
           <textarea
             name="description"
             placeholder="Summary"
@@ -215,7 +232,7 @@ export const CMSDashboard = () => {
             required
             className='cms-form-textarea'
           />
-          <lable>Detailed Text</lable>
+          <label>Detailed Text</label>
           <textarea
             name="detailedText"
             placeholder="Detailed Text"
@@ -223,7 +240,7 @@ export const CMSDashboard = () => {
             onChange={handleFormChange}
             className='cms-form-textarea'
           />
-          <lable>Featuring Image</lable>
+          <label>Featuring Image</label>
           <input
             type="file"
             name="images"
@@ -232,7 +249,19 @@ export const CMSDashboard = () => {
             onChange={handleFormChange}
             className='cms-form-input'
           />
-          <lable>Upload Files</lable>
+          {selectedImages.length > 0 && (
+            <div className='cms-selected-images'>
+              {selectedImages.map((image, index) => (
+                <img
+                  key={index}
+                  src={image}
+                  alt={`Selected ${index + 1}`}
+                  className='cms-selected-image'
+                />
+              ))}
+            </div>
+          )}
+          <label>Upload Files</label>
           <input
             type="file"
             name="files"
@@ -241,8 +270,7 @@ export const CMSDashboard = () => {
             onChange={handleFormChange}
             className='cms-form-input'
           />
-          <lable>Add Video Links</lable>
-
+          <label>Add Video Links</label>
           <input
             type="text"
             name="videos"
@@ -251,46 +279,92 @@ export const CMSDashboard = () => {
             onChange={handleFormChange}
             className='cms-form-input'
           />
-          <button type="submit" className='cms-submit-button'>{editing ? 'Update' : 'Submit'}</button>
+          <button type="submit" className='cms-submit-button' disabled={isSubmitting}>
+            {editing ? 'Update' : 'Submit'}
+          </button>
         </form>
       </div>
-      <h2 className='cms-list-heading'>Data List</h2>
-      <div className='cms-data-list'>
-        {data.filter(item => item.category === selectedCategory && item.subCategory === selectedSubCategory).map(item => (
-          <div key={item._id} className='cms-data-item'>
-            {item.images && item.images.map((image, index) => (
-              <img
-                key={index}
-                src={`http://localhost:3005/${image}`}
-                alt={`Image ${index + 1}`}
-                className='cms-data-image'
-              />
+      <table className='cms-data-table'>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Detailed Text</th>
+            <th>Images</th>
+            <th>Files</th>
+            <th>Videos</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data
+            .filter(
+              (item) =>
+                item.category === selectedCategory &&
+                item.subCategory === selectedSubCategory
+            )
+            .map((item) => (
+              <tr key={item._id}>
+                <td>{item.title}</td>
+                <td>{item.description}</td>
+                <td>{item.detailedText}</td>
+                <td>
+                  {item.images &&
+                    item.images.map((image, index) => (
+                      <a
+                        key={index}
+                        href={`${API_BASE_URL}/${image}`}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                      >
+                        <img
+                          src={`${API_BASE_URL}/${image}`}
+                          alt={`Image ${index + 1}`}
+                          className='cms-data-thumbnail'
+                          style={{ width: '100px', height: 'auto' }}
+                        />
+                      </a>
+                    ))}
+                </td>
+                <td>
+                  {item.files &&
+                    item.files.map((file, index) => (
+                      <a
+                        key={index}
+                        href={`${API_BASE_URL}/${file}`}
+                        download
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='cms-data-file-link'
+                      >
+                        File {index + 1}
+                      </a>
+                    ))}
+                </td>
+                <td>
+                  {item.videos &&
+                    item.videos.map((video, index) => (
+                      <a
+                        key={index}
+                        href={video}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='cms-data-video-link'
+                      >
+                        Watch Video {index + 1}
+                      </a>
+                    ))}
+                </td>
+                <td>
+                  <button onClick={() => handleEdit(item)}>Edit</button>
+                  <br />
+                  <br />
+                  <button className='dltbtn' onClick={() => handleDelete(item._id)}>Delete</button>
+                </td>
+              </tr>
             ))}
-            {item.files && item.files.map((file, index) => (
-              <a
-                key={index}
-                href={`http://localhost:3005/${file}`}
-                download
-                className='cms-data-file'
-              >
-                File {index + 1}
-              </a>
-            ))}
-            <h3 className='cms-data-title'>{item.title}</h3>
-            <p className='cms-data-description'>{item.description}</p>
-            <p className='cms-data-detailed-text'>{item.detailedText}</p>
-            {item.videos && item.videos.map((video, index) => (
-              <div key={index}>
-                <video controls>
-                  <source src={video} type="video/mp4" />
-                </video>
-              </div>
-            ))}
-            <button className='cms-edit-button' onClick={() => handleEdit(item)}>Edit</button>
-            <button className='cms-delete-button' onClick={() => handleDelete(item._id)}>Delete</button>
-          </div>
-        ))}
-      </div>
+        </tbody>
+      </table>
     </div>
   );
 };
