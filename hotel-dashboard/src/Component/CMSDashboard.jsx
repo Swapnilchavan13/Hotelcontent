@@ -80,7 +80,7 @@ export const CMSDashboard = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setShowLoadingPopup(true);
-
+  
     const formDataToSubmit = new FormData();
     formDataToSubmit.append('title', formData.title);
     formDataToSubmit.append('description', formData.description);
@@ -88,19 +88,20 @@ export const CMSDashboard = () => {
     formDataToSubmit.append('detailedText', formData.detailedText);
     formDataToSubmit.append('subCategory', formData.subCategory);
     formDataToSubmit.append('category', selectedCategory);
-
+  
     formData.images.forEach((image) => {
       formDataToSubmit.append('images', image);
     });
     formData.files.forEach((file) => {
       formDataToSubmit.append('files', file);
     });
-
+  
     try {
       await fetch(ADD_CMS_DATA_URL, {
         method: 'POST',
         body: formDataToSubmit,
       });
+      // Reset the form fields, but keep the selected subCategory
       setFormData({
         title: '',
         description: '',
@@ -108,7 +109,7 @@ export const CMSDashboard = () => {
         videos: '',
         detailedText: '',
         files: [],
-        subCategory: ''
+        subCategory: formData.subCategory, // Retain the selected subcategory
       });
       setSelectedImages([]);
       fetchData();
@@ -152,19 +153,20 @@ export const CMSDashboard = () => {
     updatedFormData.append('detailedText', formData.detailedText);
     updatedFormData.append('subCategory', formData.subCategory);
     updatedFormData.append('category', selectedCategory);
-
+  
     formData.images.forEach((image) => {
       updatedFormData.append('images', image);
     });
     formData.files.forEach((file) => {
       updatedFormData.append('files', file);
     });
-
+  
     try {
       await fetch(UPDATE_CMS_DATA_URL(editing), {
         method: 'PUT',
         body: updatedFormData,
       });
+      // Reset the form fields, but keep the selected subCategory
       setFormData({
         title: '',
         description: '',
@@ -172,7 +174,7 @@ export const CMSDashboard = () => {
         videos: '',
         detailedText: '',
         files: [],
-        subCategory: ''
+        subCategory: formData.subCategory, // Retain the selected subcategory
       });
       setSelectedImages([]);
       setEditing(null);
@@ -294,7 +296,7 @@ export const CMSDashboard = () => {
           <tr>
             <th>Title</th>
             <th>Description</th>
-            <th>Detailed Text</th>
+            {/* <th>Detailed Text</th> */}
             <th>Images</th>
             <th>Files</th>
             <th>Videos</th>
@@ -312,7 +314,7 @@ export const CMSDashboard = () => {
               <tr key={item._id}>
                 <td>{item.title}</td>
                 <td>{item.description}</td>
-                <td>{item.detailedText}</td>
+                {/* <td>{item.detailedText}</td> */}
                 <td>
                   {item.images &&
                     item.images.map((image, index) => (
