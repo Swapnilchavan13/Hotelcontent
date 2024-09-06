@@ -6,11 +6,20 @@ import { Link } from 'react-router-dom';
 // Sample Data
 const data = [
   { category: 'Knowledge Portal', subCategory: 'GHG Emissions', title: 'Introduction', description: 'Overview of GHG emissions and their impact', image: 'https://www.epa.gov/system/files/styles/large/private/images/2024-04/gases-by-fluorinated-2024.png?itok=8SHsTr-2' },
-  { category: 'Knowledge Portal', subCategory: 'GHG Emissions', title: 'Measurement Toolkit', description: 'Videos, text manuals, and presentations on measuring Scope 1 and Scope 2 emissions', image:'https://www.measurement-toolkit.org/images/logos/main-logo.png' },
+  { category: 'Knowledge Portal', subCategory: 'GHG Emissions', title: 'Measurement Toolkit', description: 'Videos, text manuals, and presentations on measuring Scope 1 and Scope 2 emissions Videos, text manuals, and presentations on measuring Scope 1 and Scope 2 emissions', image:'https://www.measurement-toolkit.org/images/logos/main-logo.png' },
   { category: 'Knowledge Portal', subCategory: 'GHG Emissions', title: 'Mitigation Strategies', description: 'Best practices and case studies for reducing GHG emissions', image:'https://media.licdn.com/dms/image/D4D12AQF4Ddxm2FvBTg/article-cover_image-shrink_600_2000/0/1676622136261?e=2147483647&v=beta&t=a4-rINRixggoN5iEa9DuPJV1gtEOnTsE_ggZ4temkOM' },
   { category: 'Knowledge Portal', subCategory: 'GHG Emissions', title: 'Mitigation Strategies', description: 'Best practices and case studies for reducing GHG emissions', image:'https://media.licdn.com/dms/image/D4D12AQF4Ddxm2FvBTg/article-cover_image-shrink_600_2000/0/1676622136261?e=2147483647&v=beta&t=a4-rINRixggoN5iEa9DuPJV1gtEOnTsE_ggZ4temkOM' },
   { category: 'Knowledge Portal', subCategory: 'Water Management', title: 'Introduction', description: 'Overview of water management and harvesting techniques', image: 'https://www.civilengineer9.com/wp-content/uploads/2019/04/Sustainable-Water-conservation-1024x673.jpg' },
   { category: 'Knowledge Portal', subCategory: 'Water Management', title: 'Water Budgets', description: 'Guidelines and examples for creating water budgets', image:'https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-3-031-51083-0_17/MediaObjects/326208_1_En_17_Fig3_HTML.png' },
+  { category: 'Knowledge Portal', subCategory: 'GHG Emissions', title: 'Mitigation Strategies', description: 'Best practices and case studies for reducing GHG emissions', image:'https://media.licdn.com/dms/image/D4D12AQF4Ddxm2FvBTg/article-cover_image-shrink_600_2000/0/1676622136261?e=2147483647&v=beta&t=a4-rINRixggoN5iEa9DuPJV1gtEOnTsE_ggZ4temkOM' },
+  { category: 'Knowledge Portal', subCategory: 'GHG Emissions', title: 'Mitigation Strategies', description: 'Best practices and case studies for reducing GHG emissions', image:'https://media.licdn.com/dms/image/D4D12AQF4Ddxm2FvBTg/article-cover_image-shrink_600_2000/0/1676622136261?e=2147483647&v=beta&t=a4-rINRixggoN5iEa9DuPJV1gtEOnTsE_ggZ4temkOM' },
+  { category: 'Knowledge Portal', subCategory: 'Water Management', title: 'Introduction', description: 'Overview of water management and harvesting techniques', image: 'https://www.civilengineer9.com/wp-content/uploads/2019/04/Sustainable-Water-conservation-1024x673.jpg' },
+  { category: 'Knowledge Portal', subCategory: 'Water Management', title: 'Water Budgets', description: 'Guidelines and examples for creating water budgets', image:'https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-3-031-51083-0_17/MediaObjects/326208_1_En_17_Fig3_HTML.png' },
+  { category: 'Knowledge Portal', subCategory: 'GHG Emissions', title: 'Mitigation Strategies', description: 'Best practices and case studies for reducing GHG emissions', image:'https://media.licdn.com/dms/image/D4D12AQF4Ddxm2FvBTg/article-cover_image-shrink_600_2000/0/1676622136261?e=2147483647&v=beta&t=a4-rINRixggoN5iEa9DuPJV1gtEOnTsE_ggZ4temkOM' },
+  { category: 'Knowledge Portal', subCategory: 'GHG Emissions', title: 'Mitigation Strategies', description: 'Best practices and case studies for reducing GHG emissions', image:'https://media.licdn.com/dms/image/D4D12AQF4Ddxm2FvBTg/article-cover_image-shrink_600_2000/0/1676622136261?e=2147483647&v=beta&t=a4-rINRixggoN5iEa9DuPJV1gtEOnTsE_ggZ4temkOM' },
+  { category: 'Knowledge Portal', subCategory: 'Water Management', title: 'Introduction', description: 'Overview of water management and harvesting techniques', image: 'https://www.civilengineer9.com/wp-content/uploads/2019/04/Sustainable-Water-conservation-1024x673.jpg' },
+  { category: 'Knowledge Portal', subCategory: 'Water Management', title: 'Water Budgets', description: 'Guidelines and examples for creating water budgets', image:'https://media.springernature.com/lw685/springer-static/image/chp%3A10.1007%2F978-3-031-51083-0_17/MediaObjects/326208_1_En_17_Fig3_HTML.png' },
+
   { category: 'Knowledge Portal', subCategory: 'Water Management', title: 'Best Practices', description: 'Case studies and strategies for effective water management', image:'https://social-innovation.hitachi/-/media/Project/Hitachi/SIB/en-IN/knowledge-hub/collaborate/power-of-efficient-water-management/images/wt-img4.png' },
   { category: 'Knowledge Portal', subCategory: 'Waste Management', title: 'Introduction', description: 'Overview of waste management principles', image:'https://static.prepp.in/public/image/581a590d0aa6d6925f2351e157be0d97.png?tr=w-512,h-479,c-force' },
   { category: 'Knowledge Portal', subCategory: 'Waste Management', title: 'Reduction Techniques', description: 'Videos, text manuals, and presentations on waste reduction methods', image:'https://nursesrevisionuganda.com/wp-content/uploads/2023/07/Waste-management-hierarchy.png' },
@@ -32,6 +41,7 @@ export const Dashboard = () => {
   const { user, logout } = useAuth();
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedSubCategory, setSelectedSubCategory] = useState('');
+  const [expandedDescriptions, setExpandedDescriptions] = useState({});
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
@@ -40,6 +50,13 @@ export const Dashboard = () => {
 
   const handleSubCategoryChange = (subCategory) => {
     setSelectedSubCategory(subCategory);
+  };
+
+  const handleToggleDescription = (index) => {
+    setExpandedDescriptions((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
   };
 
   const subCategories = Array.from(new Set(data
@@ -61,11 +78,33 @@ export const Dashboard = () => {
     return acc;
   }, {});
 
+    // Function to provide descriptions for subcategories
+    const getSubCategoryDescription = (subCategory) => {
+      switch (subCategory) {
+        case 'GHG Emissions':
+          return 'A detailed introduction about GHG emissions and their various types.';
+        case 'Water Management':
+          return 'Insights on effective water management and conservation techniques.';
+        case 'Waste Management':
+          return 'Best practices for managing waste sustainably, including reduction, recycling, and reuse.';
+        case 'Biodiversity':
+          return 'Strategies and case studies to support and enhance biodiversity.';
+        case 'Carbon Credit Programs':
+          return 'Overview and tools for participating in carbon credit programs.';
+        case 'Emissions Measurement':
+          return 'Tools and techniques for measuring Scope 1, 2, and 3 emissions.';
+        case 'Sustainable Sourcing':
+          return 'Guidelines for sourcing sustainable products and services.';
+        default:
+          return 'Explore various tools and resources related to sustainability.';
+      }
+    }
+
   return (
     <>
       <div className='dashboardmain'>
         <h1>Welcome to Sustainability Management Dashboard</h1>
-        <h3>We are excited to introduce you to our new platform, designed to be your central hub for managing and tracking all aspects of sustainability within our organization. Here, you will find a wealth of resources, tools, and insights to help you achieve your sustainability goals more effectively.</h3>
+        <h3>We are excited to introduce you to our new platform, designed to be your central hub for managing and tracking all aspects of sustainability within our organization.</h3>
       </div>
 
       <div className='category-buttons' id='categorybuttons'>
@@ -92,15 +131,32 @@ export const Dashboard = () => {
       {Object.keys(groupedData).map((subCategory, index) => (
         <div key={index} className='category-section'>
           <h2>{subCategory}</h2>
+          <p className='subcategory-description'>{getSubCategoryDescription(subCategory)}</p> {/* Description for each subcategory */}
           <div className='image-scroll'>
-            {groupedData[subCategory].map((item, idx) => (
-              <Link to={`/detail/${encodeURIComponent(item.title)}`} key={idx} className='data-item'>
-                {/* Wrap the item with Link to redirect to DetailPage */}
+            {groupedData[subCategory].map((item, idx) => {
+              const isExpanded = expandedDescriptions[idx];
+              const words = item.description.split(' ');
+              const shortDescription = words.slice(0, 15).join(' ');
+              const fullDescription = item.description;
+              return (
+                <div  className='data-item'>
                 <h3>{item.title}</h3>
+
+                <Link to={`/detail/${encodeURIComponent(item.title)}`} key={idx}>  
                 {item.image && <img src={item.image} alt={`${item.title} image`} className='data-image' />}
-                <p>{item.description}</p>
-              </Link>
-            ))}
+                    </Link>
+                <p>
+                    {isExpanded ? fullDescription : `${shortDescription}... `}
+                    {words.length > 15 && (
+                      <span onClick={() => handleToggleDescription(idx)} className="more-link">
+                        {isExpanded ? ' Show less' : 'More'}
+                      </span>
+                    )}
+                  </p>
+                    </div>
+              
+            );
+            })}
           </div>
         </div>
       ))}
