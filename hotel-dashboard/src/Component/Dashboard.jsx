@@ -104,6 +104,8 @@ export const Dashboard = () => {
         </div>
       )}
 
+<div className='categorydiv'>
+
       {Object.keys(groupedData).map((subCategory, index) => (
         <div key={index} className='category-section'>
           <h2>{subCategory}</h2>
@@ -115,7 +117,7 @@ export const Dashboard = () => {
               const shortDescription = words.slice(0, 15).join(' ');
               const fullDescription = item.description;
               const imageSrc = item.images && item.images.length > 0 ? item.images[0] : ''; // Use the first image
-
+              
               return (
                 <div className='data-item' key={idx}>
                   <h3>{item.title}</h3>
@@ -136,6 +138,7 @@ export const Dashboard = () => {
           </div>
         </div>
       ))}
+      </div>
 
       <div className='dashboard-header'>
         <button className='logout-button' onClick={logout}>Logout</button>
