@@ -83,7 +83,6 @@ export const Dashboard = () => {
 
   return (
     <>
-    
       <div className='category-buttons' id='categorybuttons'>
         <button className={`category-button ${selectedCategory === 'All' ? 'active' : ''}`} onClick={() => handleCategoryChange('All')}>All Categories</button>
         <button className={`category-button ${selectedCategory === 'Knowledge Portal' ? 'active' : ''}`} onClick={() => handleCategoryChange('Knowledge Portal')}>Knowledge Portal</button>
@@ -104,40 +103,47 @@ export const Dashboard = () => {
         </div>
       )}
 
-<div className='categorydiv'>
+      <div className='categorydiv'>
+        {Object.keys(groupedData).map((subCategory, index) => (
+          <div key={index} className='category-section'>
+            <div className='category-header'>
+              <h2>{subCategory} <span> <Link to={`/allitems/${encodeURIComponent(subCategory)}`} className="see-all-button">
+                See All
+              </Link></span></h2>
+            </div>
+            <p className='subcategory-description'>{getSubCategoryDescription(subCategory)}</p>
+            <div className='image-scroll'>
+              {groupedData[subCategory].map((item, idx) => {
+                const isExpanded = expandedDescriptions[idx];
+                const words = item.description.split(' ');
+                const shortDescription = words.slice(0, 15).join(' ');
+                const fullDescription = item.description;
+                const imageSrc = item.images && item.images.length > 0 ? item.images[0] : ''; // Use the first image
 
-      {Object.keys(groupedData).map((subCategory, index) => (
-        <div key={index} className='category-section'>
-          <h2>{subCategory}</h2>
-          <p className='subcategory-description'>{getSubCategoryDescription(subCategory)}</p>
-          <div className='image-scroll'>
-            {groupedData[subCategory].map((item, idx) => {
-              const isExpanded = expandedDescriptions[idx];
-              const words = item.description.split(' ');
-              const shortDescription = words.slice(0, 15).join(' ');
-              const fullDescription = item.description;
-              const imageSrc = item.images && item.images.length > 0 ? item.images[0] : ''; // Use the first image
-              
-              return (
-                <div className='data-item' key={idx}>
-                  <h3>{item.title}</h3>
-                  <Link to={`/detail/${encodeURIComponent(item.title)}`}>
-                    {imageSrc && <img src={`https://localitebackend.localite.services/${imageSrc}`} alt={`${item.title} image`} className='data-image' />}
-                  </Link>
-                  <p>
-                    {isExpanded ? fullDescription : `${shortDescription}... `}
-                    {words.length > 15 && (
-                      <span onClick={() => handleToggleDescription(idx)} className="more-link">
-                        {isExpanded ? ' Show less' : 'More'}
-                      </span>
-                    )}
-                  </p>
-                </div>
-              );
-            })}
+                // Limit the title to one line with a maximum of 12 words
+                const titleWords = item.title.split('');
+                const truncatedTitle = titleWords.length > 25 ? titleWords.slice(0, 25).join('') + '...' : item.title;
+
+                return (
+                  <div className='data-item' key={idx}>
+                    <h3 title={item.title}>{truncatedTitle}</h3>
+                    <Link to={`/detail/${encodeURIComponent(item.title)}`}>
+                      {imageSrc && <img src={`https://localitebackend.localite.services/${imageSrc}`} alt={`${item.title} image`} className='data-image' />}
+                    </Link>
+                    <p>
+                      {isExpanded ? fullDescription : `${shortDescription}... `}
+                      {words.length > 15 && (
+                        <span onClick={() => handleToggleDescription(idx)} className="more-link">
+                          {isExpanded ? ' Show less' : 'More'}
+                        </span>
+                      )}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
       </div>
 
       <div className='dashboard-header'>

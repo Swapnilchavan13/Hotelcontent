@@ -254,6 +254,8 @@ export const CMSDashboard = () => {
             className='cms-form-input'
           />
           <label>Images</label>
+          <div className= 'dropzone'>
+
           <input
             type="file"
             name="images"
@@ -261,7 +263,8 @@ export const CMSDashboard = () => {
             multiple
             onChange={handleFormChange}
             className='cms-form-input'
-          />
+            />
+            </div>
           <div className='cms-image-preview'>
             {selectedImages.map((image, index) => (
               <img
@@ -274,6 +277,8 @@ export const CMSDashboard = () => {
             ))}
           </div>
           <label>Files</label>
+
+          <div className= 'dropzone'>
           <input
             type="file"
             name="files"
@@ -282,6 +287,7 @@ export const CMSDashboard = () => {
             onChange={handleFormChange}
             className='cms-form-input'
           />
+</div>
           <label>Detailed Text</label>
           <ReactQuill
             value={formData.detailedText}

@@ -10,6 +10,7 @@ import { Dashboard } from './Component/Dashboard';
 import { Home } from './Component/Home';
 import { CMSDashboard } from './Component/CMSDashboard';
 import { DetailPage } from './Component/DetailPage';
+import { AllItems } from './Component/Allitems';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/cms" element={<CMSDashboard />} />
           <Route path='/detail/:title' element={<DetailPage />} />
+          <Route path='/allitems/:subCategory' element={<AllItems />} />
           <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
 
         </Routes>
