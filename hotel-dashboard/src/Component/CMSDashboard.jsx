@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/cms.css';
 import { LoadingPopup } from './LoadingPopup';
+import ReactQuill from 'react-quill'; // Import ReactQuill
+import 'react-quill/dist/quill.snow.css'; // Import styles for the editor
 
 // Define API endpoints
 const API_BASE_URL = 'https://localitebackend.localite.services';
 const GET_CMS_DATA_URL = `${API_BASE_URL}/getcmsdata`;
 const ADD_CMS_DATA_URL = `${API_BASE_URL}/addcmsdata`;
-const DELETE_CMS_DATA_URL = `${API_BASE_URL}/cms`;
+const DELETE_CMS_DATA_URL = `${API_BASE_URL}/cm`;
 const UPDATE_CMS_DATA_URL = (id) => `${API_BASE_URL}/cms/${id}`;
-
 
 export const CMSDashboard = () => {
   const [categories] = useState(['Knowledge Portal', 'Marketplace']);
@@ -43,6 +44,10 @@ export const CMSDashboard = () => {
     } catch (error) {
       console.error('Error fetching data:', error);
     }
+  };
+
+  const handleDetailedTextChange = (value) => {
+    setFormData({ ...formData, detailedText: value });
   };
 
   const getSubCategories = (category) => {
@@ -97,10 +102,13 @@ export const CMSDashboard = () => {
     });
   
     try {
-      await fetch(ADD_CMS_DATA_URL, {
+      const response = await fetch(ADD_CMS_DATA_URL, {
         method: 'POST',
         body: formDataToSubmit,
       });
+      if (!response.ok) {
+        throw new Error('Failed to add data');
+      }
       // Reset the form fields, but keep the selected subCategory
       setFormData({
         title: '',
@@ -136,12 +144,13 @@ export const CMSDashboard = () => {
     setFormData({
       title: item.title,
       description: item.description,
-      images: [], // To be updated with new images if needed
+      images: [], // Reset images to handle new image uploads
       videos: item.videos.join(', '),
       detailedText: item.detailedText,
-      files: [], // To be updated with new files if needed
+      files: [], // Reset files to handle new file uploads
       subCategory: item.subCategory,
     });
+    setSelectedImages(item.images.map(image => `${API_BASE_URL}/${image}`)); // Show existing images
     setEditing(item._id);
   };
 
@@ -162,10 +171,13 @@ export const CMSDashboard = () => {
     });
   
     try {
-      await fetch(UPDATE_CMS_DATA_URL(editing), {
+      const response = await fetch(UPDATE_CMS_DATA_URL(editing), {
         method: 'PUT',
         body: updatedFormData,
       });
+      if (!response.ok) {
+        throw new Error('Failed to update data');
+      }
       // Reset the form fields, but keep the selected subCategory
       setFormData({
         title: '',
@@ -231,24 +243,17 @@ export const CMSDashboard = () => {
             required
             className='cms-form-input'
           />
-          <label>Summary</label>
-          <textarea
+          <label>Description</label>
+          <input
+            type="text"
             name="description"
-            placeholder="Summary"
+            placeholder="Description"
             value={formData.description}
             onChange={handleFormChange}
             required
-            className='cms-form-textarea'
+            className='cms-form-input'
           />
-          <label>Detailed Text</label>
-          <textarea
-            name="detailedText"
-            placeholder="Detailed Text"
-            value={formData.detailedText}
-            onChange={handleFormChange}
-            className='cms-form-textarea'
-          />
-          <label>Featuring Image</label>
+          <label>Images</label>
           <input
             type="file"
             name="images"
@@ -257,25 +262,32 @@ export const CMSDashboard = () => {
             onChange={handleFormChange}
             className='cms-form-input'
           />
-          {selectedImages.length > 0 && (
-            <div className='cms-selected-images'>
-              {selectedImages.map((image, index) => (
-                <img
-                  key={index}
-                  src={image}
-                  alt={`Selected ${index + 1}`}
-                  className='cms-selected-image'
-                />
-              ))}
-            </div>
-          )}
+          <div className='cms-image-preview'>
+            {selectedImages.map((image, index) => (
+              <img
+                key={index}
+                src={image}
+                alt={`Preview ${index + 1}`}
+                className='cms-preview-image'
+                style={{ width: '100px', height: 'auto', marginRight: '10px' }}
+              />
+            ))}
+          </div>
           <label>Files</label>
           <input
             type="file"
             name="files"
+            accept=".pdf,.ppt,.xls"
             multiple
             onChange={handleFormChange}
             className='cms-form-input'
+          />
+          <label>Detailed Text</label>
+          <ReactQuill
+            value={formData.detailedText}
+            onChange={handleDetailedTextChange}
+            className='cms-quill-editor'
+            theme="snow"
           />
           <label>Videos</label>
           <input
@@ -296,7 +308,6 @@ export const CMSDashboard = () => {
           <tr>
             <th>Title</th>
             <th>Description</th>
-            {/* <th>Detailed Text</th> */}
             <th>Images</th>
             <th>Files</th>
             <th>Videos</th>
@@ -314,7 +325,6 @@ export const CMSDashboard = () => {
               <tr key={item._id}>
                 <td>{item.title}</td>
                 <td>{item.description}</td>
-                {/* <td>{item.detailedText}</td> */}
                 <td>
                   {item.images &&
                     item.images.map((image, index) => (
