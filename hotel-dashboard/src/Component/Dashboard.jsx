@@ -41,10 +41,26 @@ export const Dashboard = () => {
     }));
   };
 
+  const subCategoryOrder = [
+    'GHG Emissions',
+    'Water Management',
+    'Waste Management',
+    'Biodiversity',
+    'Carbon Credit Programs',
+    'Emissions Measurement',
+    'Sustainable Sourcing',
+    'Sustainable Services'
+  ];
+
+  // Filter and sort subCategories based on the selected category and desired order
   const subCategories = Array.from(new Set(data
     .filter(item => selectedCategory === 'All' || item.category === selectedCategory)
     .map(item => item.subCategory)
-  ));
+  )).sort((a, b) => {
+    const indexA = subCategoryOrder.indexOf(a);
+    const indexB = subCategoryOrder.indexOf(b);
+    return indexA - indexB;
+  });
 
   const filteredData = data.filter(item => {
     if (selectedCategory !== 'All' && item.category !== selectedCategory) return false;
@@ -59,6 +75,13 @@ export const Dashboard = () => {
     acc[item.subCategory].push(item);
     return acc;
   }, {});
+
+  // Sort the groupedData keys according to the desired order
+  const sortedGroupedDataKeys = Object.keys(groupedData).sort((a, b) => {
+    const indexA = subCategoryOrder.indexOf(a);
+    const indexB = subCategoryOrder.indexOf(b);
+    return indexA - indexB;
+  });
 
   const getSubCategoryDescription = (subCategory) => {
     switch (subCategory) {
@@ -104,7 +127,7 @@ export const Dashboard = () => {
       )}
 
       <div className='categorydiv'>
-        {Object.keys(groupedData).map((subCategory, index) => (
+        {sortedGroupedDataKeys.map((subCategory, index) => (
           <div key={index} className='category-section'>
             <div className='category-header'>
               <h2>{subCategory} <span> <Link to={`/allitems/${encodeURIComponent(subCategory)}`} className="see-all-button">
