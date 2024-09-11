@@ -31,15 +31,22 @@
     padding: 0px 5px;
   }
 
- 
   /* Category Buttons */
   .category-buttons {
     display: flex;
     justify-content: center;
     gap: 15px;
     width: 90%;
-    padding-top: 30px;
+    /* padding-top: 30px; */
+    background-color: rgb(52, 51, 51);
+    padding: 10px;
     margin: auto;
+  }
+
+  .seperatecategorydiv{
+    width: 100%;
+    /* padding-top: 30px; */
+    background-color: rgb(52, 51, 51);
   }
   
   .category-button {
@@ -61,6 +68,15 @@
   .category-button.active {
     background-color: #023e8a;
   }
+
+  .horiimage img {
+    width: 100%; /* Makes the image width cover the container */
+    height: 450px; /* Sets a fixed height for the image */
+    object-fit: cover; /* Ensures the image fills the container without stretching */
+    border-radius: 10px; /* Optional: Rounds the corners of the image */
+    display: block; /* Removes the bottom space under the image (inline elements issue) */
+  }
+  
   
   /* Subcategory Buttons */
   .subcategory-buttons {
@@ -71,6 +87,10 @@
     width: 90%; /* Ensures the buttons take only as much space as needed */
   }
   
+  .category-header{
+    padding: 10px;
+    background-color: rgb(224, 224, 224);
+  }
 
   .subcategory-button {
     background-color: #e0f7fa;
@@ -118,7 +138,9 @@
     height: auto;
     margin-top: 8px;
     border-radius: 4px;
+    border: 1px solid black;
   }
+  
   
   .data-item h3 {
     font-size: 1.2rem;
@@ -128,9 +150,14 @@
   }
   
   .data-item p {
+    width: 100%;
     font-size: 0.95rem;
-    text-align: left;
-    color: #666;
+    text-align: justify; /* Justifies the text content */
+    color: #2c2b2b;
+    background-color: rgb(224, 224, 224);
+    margin: 0; /* Optional: Removes default margin for more control */
+    padding: 6px; /* Optional: Adds some padding for better readability */
+    border-radius: 6px;
   }
   
 
@@ -219,6 +246,7 @@
   gap: 10px;
   padding: 10px 0;
   scrollbar-width: none; /* Firefox */
+  background-color: #f6ebe0;
 }
 
 .image-scroll::-webkit-scrollbar {
@@ -263,9 +291,7 @@ margin-top: 30px;
 .category-section .subcategory-description {
   margin-top: 10px;
   margin-left: 20px;
-  margin-bottom: -30px;
-
-
+  /* margin-bottom: -30px; */
 } 
 
 .category-section h2 {
