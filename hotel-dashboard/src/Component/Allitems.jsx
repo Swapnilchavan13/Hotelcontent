@@ -24,10 +24,18 @@ export const AllItems = () => {
     fetchData();
   }, [subCategory]);
 
+  // Function to truncate the title to 13 words
+  const truncateTitle = (title) => {
+    const words = title.split(' ');
+    return words.length > 7 ? words.slice(0, 7).join(' ') + '...' : title;
+  };
+
   if (loading) {
-    return <div className='loader'>
-              <img src="https://wpamelia.com/wp-content/uploads/2018/11/ezgif-2-6d0b072c3d3f.gif" alt="" />
-    </div>; // Display loader while fetching
+    return (
+      <div className='loader'>
+        <img src="https://wpamelia.com/wp-content/uploads/2018/11/ezgif-2-6d0b072c3d3f.gif" alt="" />
+      </div>
+    ); // Display loader while fetching
   }
 
   return (
@@ -39,7 +47,7 @@ export const AllItems = () => {
         ) : (
           data.map((item, index) => (
             <div key={index} className='item-card'>
-              <h3>{item.title}</h3>
+              <h3 className='item-title'>{truncateTitle(item.title)}</h3>
               {item.images && item.images.length > 0 && (
                 <img
                   src={`https://localitebackend.localite.services/${item.images[0]}`}
