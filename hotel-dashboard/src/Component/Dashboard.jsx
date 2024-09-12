@@ -89,19 +89,19 @@ export const Dashboard = () => {
       case 'GHG Emissions':
         return ['A detailed introduction about GHG emissions', 'and their various types.'];
       case 'Water Management':
-        return ['Insights on effective water management', 'and conservation techniques.'];
+        return ['Insights on effective water management and', 'conservation techniques.'];
       case 'Waste Management':
-        return ['Best practices for managing waste sustainably,', 'including reduction, recycling, and reuse.'];
+        return ['Best practices for managing waste including,', 'reduction, recycling, and reuse.'];
       case 'Biodiversity':
-        return ['Strategies and case studies to support', 'and enhance biodiversity.'];
+        return ['Strategies and case studies to support and', 'enhance biodiversity.'];
       case 'Carbon Credit Programs':
-        return ['Overview and tools for participating', 'in carbon credit programs.'];
+        return ['Overview and tools for participating in carbon', 'credit programs.'];
       case 'Emissions Measurement':
         return ['Tools and techniques for measuring', 'Scope 1, 2, and 3 emissions.'];
       case 'Sustainable Sourcing':
         return ['Guidelines for sourcing sustainable products', 'and services.'];
       default:
-        return ['Explore various tools and resources', 'related to sustainability.'];
+        return ['Explore various tools and resources related to', 'sustainability.'];
     }
   };
   
@@ -139,14 +139,16 @@ export const Dashboard = () => {
         {sortedGroupedDataKeys.map((subCategory, index) => (
           <div key={index} className='category-section'>
             <div className='category-header'>
-              <h2>{subCategory} <span> <Link to={`/allitems/${encodeURIComponent(subCategory)}`} className="see-all-button">
-                See All
-              </Link></span></h2>
+              <h2>{subCategory} </h2>
             <p className='subcategory-description'>
     {getSubCategoryDescription(subCategory).map((line, idx) => (
       <span key={idx} style={{ display: 'block' }}>{line}</span>
     ))}
+
   </p>
+    <span> <Link to={`/allitems/${encodeURIComponent(subCategory)}`} className="see-all-button">
+                See All
+              </Link></span>
             </div>
             <div className='image-scroll'>
               {groupedData[subCategory].map((item, idx) => {
@@ -179,6 +181,7 @@ export const Dashboard = () => {
                 );
               })}
             </div>
+            <hr />
           </div>
         ))}
         </div>

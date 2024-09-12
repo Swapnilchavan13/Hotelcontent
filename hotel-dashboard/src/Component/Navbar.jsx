@@ -13,7 +13,7 @@ export const Navbar = () => {
   return (
     <nav className='navbar'>
       <div className='logo'>
-        <Link to="/">Home</Link>
+        <Link to="/dashboard"><img src="isn.jpeg" alt="" /></Link>
       </div>
       <ul className='navLinks'>
         {user && user.username ? (

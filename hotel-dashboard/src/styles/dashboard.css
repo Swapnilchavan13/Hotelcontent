@@ -45,7 +45,6 @@
 
   .seperatecategorydiv{
     width: 100%;
-    /* padding-top: 30px; */
     background-color: rgb(52, 51, 51);
   }
   
@@ -75,6 +74,7 @@
     object-fit: cover; /* Ensures the image fills the container without stretching */
     border-radius: 10px; /* Optional: Rounds the corners of the image */
     display: block; /* Removes the bottom space under the image (inline elements issue) */
+    margin-top: -14px;
   }
   
   
@@ -90,6 +90,11 @@
   .category-header{
     padding: 10px;
     background-color: rgb(224, 224, 224);
+    border-radius: 10px;
+  }
+
+  .category-header h2{
+    margin-top: -6px;
   }
 
   .subcategory-button {
@@ -180,48 +185,6 @@
     max-width: 150px;
     height: auto;
   }
-  
-  
-  /* Responsive Adjustments */
-  @media (max-width: 768px) {
-    .data-list {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      padding: 10px;
-    }
-  
-    h1 {
-      font-size: 1.5rem;
-    }
-  }
-  
-  @media (max-width: 480px) {
-
-    .dashboardmain{
-      padding: 5px 2px;
-      font-size: 10px;
-    }
-    
-    #categorybuttons {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-    }
-  
-    #subcategorybuttons {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-    }
-  
-    .logout-button {
-      font-size: 0.85rem;
-      padding: 8px 16px;
-    }
-  
-    .category-button, .subcategory-button {
-      font-size: 0.85rem;
-      padding: 8px 16px;
-    }
-  }
-  
 
   .category-buttons,
 .subcategory-buttons {
@@ -240,13 +203,19 @@
   font-size: larger;
 }
 
+.subcategory-description {
+  pointer-events: none; /* Disables any hover effects */
+}
+
 .image-scroll {
   display: flex;
   overflow-x: auto;
+  border-radius: 10px;
   gap: 10px;
   padding: 10px 0;
   scrollbar-width: none; /* Firefox */
   background-color: #f6ebe0;
+  margin-bottom: 20px;
 }
 
 .image-scroll::-webkit-scrollbar {
@@ -257,6 +226,7 @@
   width: 20%; 
   flex: 0 0 auto;
   text-align: center;
+  margin-top: -35px;
 }
 
 .data-item img {
@@ -269,18 +239,22 @@
 }
 
 .see-all-button {
-  font-size: 0.8rem;
+  font-size: 1rem;
+  position: absolute;
   color: #007bff;
   text-decoration: none;
-  border: 1px solid #007bff;
+  /* border: 1px solid #007bff; */
   padding: 5px 8px;
   border-radius: 5px;
   cursor: pointer;
-  background-color: white;
+  margin-left: 22%;
+  margin-top: -30px;
+  /* background-color: white; */
 }
 
 .categorydiv{
-margin-top: 30px;
+margin-top: 7px;
+border-radius: 10px;
 }
 
 .category-section {
@@ -332,4 +306,45 @@ html, body {
   padding: 0;
   width: 100%;
   overflow-x: hidden;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .data-list {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .dashboardmain{
+    padding: 5px 2px;
+    font-size: 10px;
+  }
+  
+  #categorybuttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #subcategorybuttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .logout-button {
+    font-size: 0.85rem;
+    padding: 8px 16px;
+  }
+
+  .category-button, .subcategory-button {
+    font-size: 0.85rem;
+    padding: 8px 16px;
+  }
 }

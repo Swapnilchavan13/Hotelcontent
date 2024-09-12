@@ -15,6 +15,11 @@
     color: #fff;
     text-decoration: none;
   }
+
+  .logo img{
+    width: 10%;
+    border-radius: 10px;
+  }
   
   .navLinks {
     list-style: none;

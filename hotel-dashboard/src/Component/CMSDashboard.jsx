@@ -197,6 +197,8 @@ export const CMSDashboard = () => {
   };
 
   return (
+  <>
+      <img className='nettzerologo' src="https://nettzero.world/wp-content/uploads/2024/02/cropped-ce2055_a34cf15bcb3c4c4b9851a279e2de0f4cmv2.webp" alt="" />
     <div className='cms-container'>
       {showLoadingPopup && <LoadingPopup />}
       <h1 className='cms-heading'>CMS Dashboard</h1>
@@ -223,7 +225,7 @@ export const CMSDashboard = () => {
                 key={subCategory}
                 className={`cms-subcategory-button ${selectedSubCategory === subCategory ? 'cms-active' : ''}`}
                 onClick={() => handleSubCategoryChange(subCategory)}
-              >
+                >
                 {subCategory}
               </button>
             ))}
@@ -242,7 +244,7 @@ export const CMSDashboard = () => {
             onChange={handleFormChange}
             required
             className='cms-form-input'
-          />
+            />
           <label>Description</label>
           <input
             type="text"
@@ -252,7 +254,7 @@ export const CMSDashboard = () => {
             onChange={handleFormChange}
             required
             className='cms-form-input'
-          />
+            />
           <label>Images</label>
           <div className= 'dropzone'>
 
@@ -268,8 +270,8 @@ export const CMSDashboard = () => {
           <div className='cms-image-preview'>
             {selectedImages.map((image, index) => (
               <img
-                key={index}
-                src={image}
+              key={index}
+              src={image}
                 alt={`Preview ${index + 1}`}
                 className='cms-preview-image'
                 style={{ width: '100px', height: 'auto', marginRight: '10px' }}
@@ -286,7 +288,7 @@ export const CMSDashboard = () => {
             multiple
             onChange={handleFormChange}
             className='cms-form-input'
-          />
+            />
 </div>
           <label>Detailed Text</label>
           <ReactQuill
@@ -325,7 +327,7 @@ export const CMSDashboard = () => {
             .filter(
               (item) =>
                 item.category === selectedCategory &&
-                item.subCategory === selectedSubCategory
+              item.subCategory === selectedSubCategory
             )
             .map((item) => (
               <tr key={item._id}>
@@ -335,8 +337,8 @@ export const CMSDashboard = () => {
                   {item.images &&
                     item.images.map((image, index) => (
                       <a
-                        key={index}
-                        href={`${API_BASE_URL}/${image}`}
+                      key={index}
+                      href={`${API_BASE_URL}/${image}`}
                         target='_blank'
                         rel='noopener noreferrer'
                       >
@@ -345,7 +347,7 @@ export const CMSDashboard = () => {
                           alt={`Image ${index + 1}`}
                           className='cms-data-thumbnail'
                           style={{ width: '100px', height: 'auto' }}
-                        />
+                          />
                       </a>
                     ))}
                 </td>
@@ -353,12 +355,12 @@ export const CMSDashboard = () => {
                   {item.files &&
                     item.files.map((file, index) => (
                       <a
-                        key={index}
-                        href={`${API_BASE_URL}/${file}`}
-                        download
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='cms-data-file-link'
+                      key={index}
+                      href={`${API_BASE_URL}/${file}`}
+                      download
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='cms-data-file-link'
                       >
                         File {index + 1}
                       </a>
@@ -368,11 +370,11 @@ export const CMSDashboard = () => {
                   {item.videos &&
                     item.videos.map((video, index) => (
                       <a
-                        key={index}
-                        href={video}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='cms-data-video-link'
+                      key={index}
+                      href={video}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='cms-data-video-link'
                       >
                         Watch Video {index + 1}
                       </a>
@@ -389,5 +391,6 @@ export const CMSDashboard = () => {
         </tbody>
       </table>
     </div>
+                        </>
   );
 };
