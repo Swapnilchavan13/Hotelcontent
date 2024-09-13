@@ -33,9 +33,9 @@ export const Navbar = () => {
             <Link to="/login">Login</Link>
           </li>
         )}
-        <li>
+        {/* <li>
           <Link to="/dashboard">Dashboard</Link>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );

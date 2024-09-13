@@ -36,11 +36,10 @@
     display: flex;
     justify-content: center;
     gap: 15px;
-    width: 90%;
-    /* padding-top: 30px; */
+    width: 75%;
     background-color: rgb(52, 51, 51);
-    padding: 10px;
-    margin: auto;
+    padding: 10px 10px 60px;
+    margin: -70px auto;
   }
 
   .seperatecategorydiv{
@@ -83,7 +82,7 @@
     display: flex;
     justify-content: center; /* Centers the buttons horizontally */
     gap: 10px; /* Space between the buttons */
-    margin: 20px auto; /* 20px margin top and bottom, auto centers horizontally */
+    margin: -70px auto; /* 20px margin top and bottom, auto centers horizontally */
     width: 90%; /* Ensures the buttons take only as much space as needed */
   }
   
@@ -216,6 +215,8 @@
   scrollbar-width: none; /* Firefox */
   background-color: #f6ebe0;
   margin-bottom: 20px;
+  margin-bottom: 30px;
+
 }
 
 .image-scroll::-webkit-scrollbar {
@@ -284,11 +285,7 @@ border-radius: 10px;
   background-color: rgb(229, 81, 81);
 }
 
-@media (max-width: 768px) {
-  .data-item {
-    min-width: 250px; /* Adjust for smaller screens */
-  }
-}
+
 
 .logout-button {
   padding: 10px 20px;
@@ -300,6 +297,78 @@ border-radius: 10px;
   margin-top: 20px;
 }
 
+/* //////paid tools css */
+
+/* Container for Paid Tools Content */
+.paid-tools-content {
+  display: flex; /* Aligns the child elements side by side */
+  justify-content: space-between; /* Adds space between the sections */
+  gap: 20px; /* Adds a gap between the sections */
+  margin: 20px auto; /* Adds some margin around the container */
+  width: 90%;
+}
+
+/* Each Paid Tools Section */
+.paid-tools-section {
+  background-color: #f8f9fa; /* Light background color for contrast */
+  border: 1px solid #ddd; /* Light border */
+  border-radius: 8px; /* Rounded corners */
+  padding: 20px; /* Padding inside each section */
+  width: 48%; /* Adjust width to take equal space */
+  text-align: center; /* Center-aligns text and images */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effect */
+  margin-top: -10px;
+}
+
+.paid-tools-section:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+/* Headings in Paid Tools Section */
+.paid-tools-section h2 {
+  font-size: 30px; /* Adjusted font size */
+  margin-bottom: 15px; /* Spacing below the heading */
+  margin-top: -20px;
+  text-align: left;
+  color: #333; /* Dark text color */
+}
+
+/* Images in Paid Tools Section */
+.paid-tools-section img {
+  max-width: 400px; /* Ensures the image is responsive */
+  border-radius: 4px; /* Slight rounding for image corners */
+  border: 1px solid black;
+}
+
+/* Anchor Links in Paid Tools Section */
+.paid-tools-section a {
+  text-decoration: none; /* Removes default underline from links */
+  color: inherit; /* Inherits text color from the parent */
+  display: block; /* Ensures the image is clickable as a block */
+}
+.subclass{
+  display: flex;
+  justify-content: space-between;
+}
+
+.calculate-button {
+  background-color: #007bff; /* Button background color */
+  color: white; /* Button text color */
+  border: none; /* Removes default border */
+  padding: 5px 10px; /* Button padding */
+  border-radius: 4px; /* Rounded corners */
+  width: 300px;
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.calculate-button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+ 
+/* /////// */
+
 
 html, body {
   margin: 0;
@@ -310,7 +379,7 @@ html, body {
 
 
 /* Responsive Adjustments */
-@media (max-width: 768px) {
+@media (max-width: 1068px) {
   .data-list {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     padding: 10px;
@@ -319,6 +388,18 @@ html, body {
   h1 {
     font-size: 1.5rem;
   }
+  
+
+  .category-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    width: 65%;
+    background-color: rgb(52, 51, 51);
+    padding: 10px 10px 60px;
+    margin: -70px auto auto ;
+  }
+  
 }
 
 @media (max-width: 480px) {
