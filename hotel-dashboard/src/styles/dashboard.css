@@ -38,8 +38,8 @@
     gap: 15px;
     width: 75%;
     background-color: rgb(52, 51, 51);
-    padding: 10px 10px 60px;
-    margin: -70px auto;
+    padding: 10px 10px 40px;
+    margin: -70px 150px;
   }
 
   .seperatecategorydiv{
@@ -82,7 +82,7 @@
     display: flex;
     justify-content: center; /* Centers the buttons horizontally */
     gap: 10px; /* Space between the buttons */
-    margin: -70px auto; /* 20px margin top and bottom, auto centers horizontally */
+    margin: -40px auto; /* 20px margin top and bottom, auto centers horizontally */
     width: 90%; /* Ensures the buttons take only as much space as needed */
   }
   
@@ -286,7 +286,6 @@ border-radius: 10px;
 }
 
 
-
 .logout-button {
   padding: 10px 20px;
   background-color: #f44336;
@@ -354,17 +353,17 @@ border-radius: 10px;
 }
 
 .calculate-button {
-  background-color: #007bff; /* Button background color */
+  background-color: #0254ac; /* Button background color */
   color: white; /* Button text color */
   border: none; /* Removes default border */
   padding: 5px 10px; /* Button padding */
   border-radius: 4px; /* Rounded corners */
-  width: 300px;
+  width: 350px;
   cursor: pointer; /* Pointer cursor on hover */
 }
 
 .calculate-button:hover {
-  background-color: #0056b3; /* Darker shade on hover */
+  background-color: #024285; /* Darker shade on hover */
 }
  
 /* /////// */

@@ -63,13 +63,14 @@ export const Dashboard = () => {
   ];
 
   const handleButtonClick = (subCategory) => {
-    const filePath = subCategory === 'GHG Emissions' 
-      ? '/CARBON BALANCE SHEET.xls'  // Adjust the filename if different
-      : '/WATER BALANCE SHEET.xlsx';  // Adjust the filename if different
-    
-    // Open the Excel file in a new tab
-    window.open(filePath, '_blank');
+    const fileUrl = subCategory === 'GHG Emissions'
+      ? 'https://docs.google.com/spreadsheets/d/1K05W_UAgZG04fLeoZ4p7H_bP5dJa-y1FT6Ai0D381F4/edit?usp=sharing' // Google Sheets link for GHG Emissions
+      : 'https://docs.google.com/spreadsheets/d/1pQ8FCO9J9gnuj8Max8eSAl3I618ytI0oIQArnKFBJ8k/edit?usp=sharing'; // Another Google Sheets link for Water Management
+  
+    // Open the file in a new tab
+    window.open(fileUrl, '_blank');
   };
+  
   
 
   // Filter and sort subCategories based on the selected category and desired order
@@ -190,7 +191,7 @@ export const Dashboard = () => {
         className="calculate-button" 
         onClick={() => handleButtonClick(subCategory)}
       >
-        {subCategory === 'GHG Emissions' ? 'Calculate Your Emission' : 'Calculate Your Water Waste'}
+        {subCategory === 'GHG Emissions' ? 'Calculate Your Carbon Balance Sheet' : 'Calculate Your Water Balance Sheet'}
       </button>
     )}
   </h2>
@@ -215,7 +216,7 @@ export const Dashboard = () => {
 
                     // Limit the title to one line with a maximum of 12 words
                     const titleWords = item.title.split('');
-                    const truncatedTitle = titleWords.length > 25 ? titleWords.slice(0, 25).join('') + '...' : item.title;
+                    const truncatedTitle = titleWords.length > 22 ? titleWords.slice(0, 22).join('') + '...' : item.title;
 
                     return (
                       <div className='data-item' key={idx} data-aos="flip-right">
@@ -238,6 +239,9 @@ export const Dashboard = () => {
               </div>
             ))}
           </div>
+          <div className='dashboard-header'>
+        <button className='logout-button' onClick={logout}>Logout</button>
+      </div>
         </>
       )}
     </>

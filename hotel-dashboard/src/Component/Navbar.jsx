@@ -20,7 +20,7 @@ export const Navbar = () => {
           <li className='user-menu' 
               onMouseEnter={handleMouseEnter} 
               onMouseLeave={handleMouseLeave}>
-            <span className='user-name'>Welcome, {user.username}</span>
+            <span className='user-name'>Hi, {user.username}</span>
             {isDropdownOpen && (
               <div className='dropdown-menu'>
                 <img src="https://cdn.vectorstock.com/i/500p/53/42/user-member-avatar-face-profile-icon-vector-22965342.jpg" alt="" />
