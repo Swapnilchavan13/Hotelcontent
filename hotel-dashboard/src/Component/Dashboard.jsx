@@ -63,12 +63,12 @@ export const Dashboard = () => {
   ];
 
   const handleButtonClick = (subCategory) => {
-    const fileUrl = subCategory === 'GHG Emissions'
-      ? 'https://docs.google.com/spreadsheets/d/1K05W_UAgZG04fLeoZ4p7H_bP5dJa-y1FT6Ai0D381F4/edit?usp=sharing' // Google Sheets link for GHG Emissions
-      : 'https://docs.google.com/spreadsheets/d/1pQ8FCO9J9gnuj8Max8eSAl3I618ytI0oIQArnKFBJ8k/edit?usp=sharing'; // Another Google Sheets link for Water Management
-  
-    // Open the file in a new tab
-    window.open(fileUrl, '_blank');
+    const baseTemplateURL = subCategory === 'GHG Emissions'
+      ? 'https://docs.google.com/spreadsheets/d/1K05W_UAgZG04fLeoZ4p7H_bP5dJa-y1FT6Ai0D381F4/copy'
+      : 'https://docs.google.com/spreadsheets/d/1pQ8FCO9J9gnuj8Max8eSAl3I618ytI0oIQArnKFBJ8k/copy';
+    
+    // Open the "Make a copy" link in a new tab
+    window.open(baseTemplateURL, '_blank');
   };
   
   
