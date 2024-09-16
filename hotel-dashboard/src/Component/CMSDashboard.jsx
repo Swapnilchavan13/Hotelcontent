@@ -16,6 +16,8 @@ export const CMSDashboard = () => {
   const [subCategories, setSubCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('Knowledge Portal');
   const [selectedSubCategory, setSelectedSubCategory] = useState('');
+  const [existingImages, setExistingImages] = useState([]); // Store existing images
+
   const [data, setData] = useState([]);
   const [formData, setFormData] = useState({
     title: '',
@@ -151,6 +153,7 @@ export const CMSDashboard = () => {
       subCategory: item.subCategory,
     });
     setSelectedImages(item.images.map(image => `${API_BASE_URL}/${image}`)); // Show existing images
+    setExistingImages(item.images); // Store existing images
     setEditing(item._id);
   };
 
@@ -163,9 +166,13 @@ export const CMSDashboard = () => {
     updatedFormData.append('subCategory', formData.subCategory);
     updatedFormData.append('category', selectedCategory);
   
-    formData.images.forEach((image) => {
+    // Add new images or use existing images if none are provided
+    const imagesToSend = formData.images.length > 0 ? formData.images : existingImages;
+    imagesToSend.forEach((image) => {
       updatedFormData.append('images', image);
     });
+  
+    // Add new files
     formData.files.forEach((file) => {
       updatedFormData.append('files', file);
     });
@@ -194,7 +201,8 @@ export const CMSDashboard = () => {
     } catch (error) {
       console.error('Error updating data:', error);
     }
-  };
+  };  
+  
 
   return (
   <>
@@ -391,6 +399,6 @@ export const CMSDashboard = () => {
         </tbody>
       </table>
     </div>
-                        </>
+    </>
   );
 };

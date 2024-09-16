@@ -114,3 +114,61 @@
     }
   }
   
+
+/* ///// */
+
+.registerform {
+  margin: 30px auto;
+  padding: 20px;
+  width: 80%;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.registerform h2 {
+  text-align: center;
+  font-size: 26px;
+  color: #3a6ea5;
+}
+
+.membership-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.membership-form label {
+  font-size: 18px;
+  color: #555;
+}
+
+.membership-form input,
+.membership-form select,
+.membership-form textarea {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.membership-form input:focus,
+.membership-form select:focus,
+.membership-form textarea:focus {
+  outline: none;
+  border-color: #3a6ea5;
+}
+
+.membership-form button {
+  padding: 15px;
+  background-color: #3a6ea5;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.membership-form button:hover {
+  background-color: #2a5d94;
+}

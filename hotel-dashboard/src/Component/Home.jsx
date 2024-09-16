@@ -1,13 +1,63 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate from React Router
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify'; // Import toast and ToastContainer
+import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
 import '../styles/home.css'; // Import CSS for styling
 
 export const Home = () => {
-  const navigate = useNavigate(); // Initialize the useNavigate hook
+  const navigate = useNavigate();
 
   // Function to handle navigation
   const redirectToDashboard = () => {
     navigate('/dashboard'); // Redirect to /dashboard route
+  };
+
+  // State for form fields
+  const [formData, setFormData] = useState({
+    propertyName: '',
+    propertyType: '',
+    location: '',
+    address: '',
+    website: '',
+    numberOfKeys: '',
+    contactPerson: '',
+    mobileNumber: '',
+    email: '',
+    sustainabilityPrograms: '',
+  });
+
+  // Handle form input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Save formData to localStorage
+    localStorage.setItem('ISN_Registration', JSON.stringify(formData));
+
+    // Show success toast
+    toast.success('Registered successfully!');
+
+    // Clear form fields after submission
+    setFormData({
+      propertyName: '',
+      propertyType: '',
+      location: '',
+      address: '',
+      website: '',
+      numberOfKeys: '',
+      contactPerson: '',
+      mobileNumber: '',
+      email: '',
+      sustainabilityPrograms: '',
+    });
   };
 
   return (
@@ -44,48 +94,121 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* Featured Tools Section */}
-      <section className="home-section">
-        <h2>Featured Tools</h2>
-        <div className="featured-tools">
-          {/* Emissions Measurement Dashboard */}
-          <div className="tool-card" onClick={redirectToDashboard}>
-            <img src="https://www.salesforce.com/content/dam/web/en_us/www/images/industries/sustainability-cloud/sustainability-01-reduce%20emissions_LG.png" alt="Emissions Measurement" />
-            <h3>Emissions Measurement Dashboard</h3>
-            <p>Tool for inputting and tracking Scope 1, 2, and 3 emissions data.</p>
-          </div>
-          {/* Water Management Dashboard */}
-          <div className="tool-card" onClick={redirectToDashboard}>
-            <img src="https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/9dbc56c5-14f7-45a6-8f34-a26e780f1af1/2716687f-6e73-4477-8a43-44eaf17a81fd.png" alt="Water Management Dashboard" />
-            <h3>Water Management Dashboard</h3>
-            <p>Tool for inputting and tracking water usage and management data.</p>
-          </div>
-          {/* Waste Management Dashboard */}
-          <div className="tool-card" onClick={redirectToDashboard}>
-            <img src="https://i.pinimg.com/originals/af/b7/71/afb771769511edcd7d1cc881f81d114e.png" alt="Waste Management Dashboard" />
-            <h3>Waste Management Dashboard</h3>
-            <p>Tool for inputting and tracking waste management data.</p>
-          </div>
-          {/* Biodiversity Dashboard */}
-          <div className="tool-card" onClick={redirectToDashboard}>
-            <img src="https://www.michaelrobertdavis.com/images/bellybutton/MRD_Dashboard.png" alt="Biodiversity Dashboard" />
-            <h3>Biodiversity Dashboard</h3>
-            <p>Tool for inputting and tracking biodiversity enhancement efforts.</p>
-          </div>
-          {/* Carbon Credit Programs Dashboard */}
-          <div className="tool-card" onClick={redirectToDashboard}>
-            <img src="https://costmos.in/wp-content/uploads/2024/05/Carbon-Credit-Consulting.png" alt="Carbon Credit Programs Dashboard" />
-            <h3>Carbon Credit Programs Dashboard</h3>
-            <p>Tool for tracking participation and progress in carbon credit programs.</p>
-          </div>
-        </div>
-      </section>
+      <div className="registerform">
+        <h2>ISN Membership Registration Form</h2>
+        <form className="membership-form" onSubmit={handleSubmit}>
+          <label>Name of Your Property:</label>
+          <input
+            type="text"
+            name="propertyName"
+            value={formData.propertyName}
+            onChange={handleChange}
+            placeholder="Enter property name"
+            required
+          />
+
+          <label>Property Type:</label>
+          <select
+            name="propertyType"
+            value={formData.propertyType}
+            onChange={handleChange}
+            required
+          >
+            <option value="" disabled>Select property type</option>
+            <option>Wildlife Lodge</option>
+            <option>Boutique Resort</option>
+            <option>Home Stay</option>
+            <option>Experiential Travel</option>
+          </select>
+
+          <label>Location:</label>
+          <input
+            type="text"
+            name="location"
+            value={formData.location}
+            onChange={handleChange}
+            placeholder="Enter location"
+            required
+          />
+
+          <label>Address:</label>
+          <input
+            type="text"
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+            placeholder="Enter address"
+            required
+          />
+
+          <label>Website:</label>
+          <input
+            type="text"
+            name="website"
+            value={formData.website}
+            onChange={handleChange}
+            placeholder="Enter website URL"
+          />
+
+          <label>Number of Keys:</label>
+          <input
+            type="number"
+            name="numberOfKeys"
+            value={formData.numberOfKeys}
+            onChange={handleChange}
+            placeholder="Enter number of keys"
+            required
+          />
+
+          <label>Contact Person:</label>
+          <input
+            type="text"
+            name="contactPerson"
+            value={formData.contactPerson}
+            onChange={handleChange}
+            placeholder="Enter contact person's name"
+            required
+          />
+
+          <label>Mobile Number:</label>
+          <input
+            type="tel"
+            name="mobileNumber"
+            value={formData.mobileNumber}
+            onChange={handleChange}
+            placeholder="Enter mobile number"
+            required
+          />
+
+          <label>Email Address:</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Enter email address"
+            required
+          />
+
+          <label>Any Current Sustainability Programs:</label>
+          <textarea
+            name="sustainabilityPrograms"
+            value={formData.sustainabilityPrograms}
+            onChange={handleChange}
+            placeholder="Describe your sustainability programs"
+          ></textarea>
+
+          <button type="submit">Submit</button>
+        </form>
+      </div>
 
       {/* Call to Action */}
       <section className="home-cta">
         <h2>Get Started with Your Sustainability Journey!</h2>
         <button className="cta-button" onClick={redirectToDashboard}>Explore the Dashboard</button>
       </section>
+      <ToastContainer />
+
     </div>
   );
 };
