@@ -207,7 +207,19 @@ export const Home = () => {
         <h2>Get Started with Your Sustainability Journey!</h2>
         <button className="cta-button" onClick={redirectToDashboard}>Explore the Dashboard</button>
       </section>
-      <ToastContainer />
+      <ToastContainer 
+       position="top-center" // Center the toast notifications at the top
+       autoClose={1000} 
+       hideProgressBar 
+       newestOnTop={false}
+       closeOnClick
+       rtl={false}
+       pauseOnFocusLoss
+       draggable
+       pauseOnHover
+       theme="colored"
+       toastClassName="custom-toast" // Apply custom CSS class
+      />
 
     </div>
   );
