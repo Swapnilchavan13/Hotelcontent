@@ -142,7 +142,7 @@ export const Dashboard = () => {
       {showPaidToolsContent && (
         <> 
          <div className='horiimage'>
-            <img src="https://www.itl.cat/pngfile/big/284-2846477_bengal-tiger-in-water.jpg" alt="" />
+            <img src="Pathways_Image.png" alt="" />
           </div>
         <div className="paid-tools-content">
          
@@ -177,7 +177,7 @@ export const Dashboard = () => {
           )}
 
           <div className='horiimage'>
-            <img data-aos="zoom-out" src="https://www.itl.cat/pngfile/big/284-2846477_bengal-tiger-in-water.jpg" alt="" />
+            <img data-aos="zoom-out" src="Pathways_Image.png" alt="" />
           </div>
 
           <div className='categorydiv'>
