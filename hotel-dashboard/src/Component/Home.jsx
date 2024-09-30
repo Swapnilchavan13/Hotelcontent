@@ -24,7 +24,12 @@ export const Home = () => {
     mobileNumber: '',
     email: '',
     sustainabilityPrograms: '',
+    loginPin: '', // Add login PIN state
+    confirmLoginPin: '', // Add confirm login PIN state
   });
+
+  // State to control PIN visibility
+  const [showPin, setShowPin] = useState(false);
 
   // Handle form input changes
   const handleChange = (e) => {
@@ -35,29 +40,65 @@ export const Home = () => {
     }));
   };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
+  // Handle PIN input change, ensuring only 4 digits are entered
+  const handlePinChange = (e) => {
+    const { name, value } = e.target;
+    if (/^\d{0,4}$/.test(value)) {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Save formData to localStorage
-    localStorage.setItem('ISN_Registration', JSON.stringify(formData));
+    // Check if PIN and Confirm PIN match
+    if (formData.loginPin !== formData.confirmLoginPin) {
+      toast.error("PIN and Confirm PIN do not match!");
+      return;
+    }
 
-    // Show success toast
-    toast.success('Registered successfully!');
+    // Prepare the data for submission
+    try {
+      const response = await fetch("http://localhost:8080/isn-registration", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    // Clear form fields after submission
-    setFormData({
-      propertyName: '',
-      propertyType: '',
-      location: '',
-      address: '',
-      website: '',
-      numberOfKeys: '',
-      contactPerson: '',
-      mobileNumber: '',
-      email: '',
-      sustainabilityPrograms: '',
-    });
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data)
+        
+        // Show success toast notification
+        toast.success("Registered successfully!");
+
+        // Clear form fields after submission
+        setFormData({
+          propertyName: "",
+          propertyType: "",
+          location: "",
+          address: "",
+          website: "",
+          numberOfKeys: "",
+          contactPerson: "",
+          mobileNumber: "",
+          email: "",
+          sustainabilityPrograms: "",
+          loginPin: "", // Reset login PIN field
+          confirmLoginPin: "", // Reset confirm login PIN field
+        });
+      } else {
+        toast.error("Registration failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("An error occurred. Please try again later.");
+    }
   };
 
   return (
@@ -198,6 +239,39 @@ export const Home = () => {
             placeholder="Describe your sustainability programs"
           ></textarea>
 
+          {/* Login PIN field */}
+          <label>Set Login PIN (4 digits):</label>
+          <input
+            type={showPin ? 'text' : 'password'}
+            name="loginPin"
+            value={formData.loginPin}
+            onChange={handlePinChange}
+            placeholder="Enter 4-digit PIN"
+            required
+          />
+
+          {/* Confirm Login PIN field */}
+          <label>Confirm Login PIN:</label>
+          <input
+            type={showPin ? 'text' : 'password'}
+            name="confirmLoginPin"
+            value={formData.confirmLoginPin}
+            onChange={handlePinChange}
+            placeholder="Confirm 4-digit PIN"
+            required
+          />
+
+          {/* Checkbox to show/hide PIN */}
+          <div className="show-pin-container">
+            <input
+              type="checkbox"
+              id="showPin"
+              checked={showPin}
+              onChange={() => setShowPin(!showPin)}
+            />
+            <label htmlFor="showPin">Show PIN</label>
+          </div>
+
           <button type="submit">Submit</button>
         </form>
       </div>
@@ -220,7 +294,6 @@ export const Home = () => {
        theme="colored"
        toastClassName="custom-toast" // Apply custom CSS class
       />
-
     </div>
   );
 };
