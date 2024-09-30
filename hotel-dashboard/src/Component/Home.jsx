@@ -62,7 +62,7 @@ export const Home = () => {
 
     // Prepare the data for submission
     try {
-      const response = await fetch("http://localhost:8080/isn-registration", {
+      const response = await fetch("https://backend.climescore.com/isn-registration", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

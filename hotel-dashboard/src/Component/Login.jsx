@@ -22,7 +22,7 @@ export const Login = () => {
   useEffect(() => {
     const fetchMerchants = async () => {
       try {
-        const response = await fetch('http://localhost:8080/getisn-registration');
+        const response = await fetch('https://backend.climescore.com/getisn-registration');
         const data = await response.json();
         setMerchants(data);
       } catch (error) {
