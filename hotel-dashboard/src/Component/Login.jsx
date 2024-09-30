@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from './AuthContex';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify'; // Import toast
 import '../styles/login.css';
 
@@ -85,8 +85,14 @@ export const Login = () => {
             required
           />
         </div>
+        <div style={{display:'flex', justifyContent:'space-between'}}>
+
+        <Link to='/'>
+        <p style={{color: 'blue'}}>Create an account</p>
+        </Link>
         {error && <p className="error-message">{error}</p>}
         <p style={{color: 'red'}}>Forgot password?</p>
+        </div>
         <br />
         <button type="submit">Login</button>
       </form>
