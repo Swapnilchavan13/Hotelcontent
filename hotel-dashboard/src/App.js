@@ -31,7 +31,7 @@ function App() {
           toastClassName="custom-toast" // Apply custom CSS class
         />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/esg" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cms" element={<CMSDashboard />} />
           <Route path='/detail/:title' element={<DetailPage />} />
