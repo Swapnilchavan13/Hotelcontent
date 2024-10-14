@@ -104,18 +104,6 @@
   .cta-button:hover {
     background-color: #f5a623;
   }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .categories,
-    .featured-tools {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-  
-
-/* ///// */
 
 .registerform {
   margin: 30px auto;
@@ -171,4 +159,91 @@
 
 .membership-form button:hover {
   background-color: #2a5d94;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .home-container {
+    padding: 10px;
+    max-width: 100%;
+  }
+  
+  .home-header {
+    padding: 20px 10px;
+  }
+  
+  .home-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .home-header p {
+    font-size: 0.8rem;
+  }
+
+  .home-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .categories,
+  .featured-tools {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .category-card,
+  .tool-card {
+    min-width: 90%; /* Allowing them to take up more horizontal space on mobile */
+    padding: 15px;
+  }
+
+  .tool-card img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .home-cta {
+    padding: 30px 10px;
+  }
+
+  .cta-button {
+    padding: 10px 20px;
+    width: 80%; /* Full width for mobile */
+  }
+
+  /* Register Form */
+  .registerform {
+    width: 90%;
+    padding: 15px;
+    margin: 20px auto;
+  }
+
+  .registerform h2 {
+    font-size: 22px;
+  }
+
+  .membership-form label {
+    font-size: 16px;
+  }
+
+  .membership-form input,
+  .membership-form select,
+  .membership-form textarea {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .membership-form button {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  /* Reducing the overall spacing */
+  .home-header,
+  .home-section,
+  .home-cta {
+    margin-bottom: 20px;
+  }
 }

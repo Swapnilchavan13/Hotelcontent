@@ -90,8 +90,8 @@
     }
     .user-name{
       font-size: 13px;
-      margin-left: 20px;
     }
+   
     
     .navbar {
       align-items: flex-start;
@@ -106,5 +106,9 @@
       margin: 10px 0;
       margin-left: 0;
     }
+
+   .navLinks li{
+    margin-left: 20px;
+   }
   }
   
