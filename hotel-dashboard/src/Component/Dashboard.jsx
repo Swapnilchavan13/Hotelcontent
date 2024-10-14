@@ -70,8 +70,6 @@ export const Dashboard = () => {
     // Open the "Make a copy" link in a new tab
     window.open(baseTemplateURL, '_blank');
   };
-  
-  
 
   // Filter and sort subCategories based on the selected category and desired order
   const subCategories = Array.from(new Set(data
