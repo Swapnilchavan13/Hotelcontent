@@ -52,3 +52,47 @@
   margin-top: 5px;
   border-radius: 4px;
 }
+
+
+/* Media Query for Small Screens (Mobile View) */
+@media (max-width: 768px) {
+  /* Detail Page for Mobile */
+  .detail-page {
+    flex-direction: column;
+    width: 90%; /* Take full width on small screens */
+    gap: 10px;
+    padding: 10px;
+  }
+
+  /* Main Category Section */
+  .main-category {
+    width: 100%; /* Full width for main content */
+    padding: 10px;
+    border-right: none; /* Remove the border for better flow */
+  }
+
+  /* Related Items Section */
+  .related-items> .related-item{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%; /* Full width for related items */
+    padding: 10px;
+    border: none; /* No separation needed */
+  }
+
+  /* Detail Image */
+  .detail-image {
+    width: 100%; /* Image takes full width on mobile */
+    margin-bottom: 15px;
+  }
+
+  /* Related Images */
+  .related-image {
+    width: 80%;
+    height: auto;
+  }
+
+  .load{
+    width: 100%;
+  }
+}

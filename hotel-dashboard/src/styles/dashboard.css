@@ -401,7 +401,7 @@ html, body {
   
 }
 
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
 
   .dashboardmain{
     padding: 5px 2px;
@@ -426,5 +426,178 @@ html, body {
   .category-button, .subcategory-button {
     font-size: 0.85rem;
     padding: 8px 16px;
+  }
+} */
+
+
+/* General Mobile Styles */
+@media (max-width: 768px) {
+  
+  /* Dashboard Header */
+  .dashboard-header {
+    justify-content: space-between;
+    padding: 10px;
+  }
+  
+  /* Category Section */
+  .category-section {
+    padding: 5px;
+    margin-bottom: 0;
+  }
+
+  .category-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 90%;
+    margin: -30px auto 20px;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .seperatecategorydiv {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .horiimage img {
+    height: auto;
+    max-height: 300px;
+  }
+
+  /* Subcategory Buttons */
+  .subcategory-buttons {
+    /* flex-direction: column; */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 90%;
+    margin-top: -20px;
+    gap: 10px;
+  }
+
+  .subcategory-buttons button{
+    width: 90%;
+  }
+
+  .category-header {
+    padding: 5px;
+  }
+
+  /* Data List Grid */
+  .data-list {
+    max-width: 50%;
+    padding: 10px;
+    gap: 15px;
+  }
+
+  /* Data Item Card */
+  .data-item {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .data-image {
+    width: 100%;
+  }
+
+  /* Paid Tools Section */
+  .paid-tools-content {
+    /* flex-direction: column; */
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .paid-tools-section {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .paid-tools-section img {
+    max-width: 100%;
+  }
+
+  /* Buttons */
+  .category-button, .subcategory-button, .calculate-button {
+    width: 80%;
+    font-size: 0.6rem;
+  }
+
+  /* Logout Button */
+  .logout-button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+
+  /* Image Scroll */
+  .image-scroll {
+    /* padding: 10px 0; */
+    height: fit-content;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .data-item {
+    margin-top: -30px;
+    width: 60%;
+  }
+
+  .data-item h3{
+font-size: medium;
+  }
+
+  .data-item img {
+    height: 50%;
+  }
+  .data-item p {
+    width: 100%;
+  } 
+  /* Category Section */
+  .category-section h2, .category-section .subcategory-description {
+    margin-left: 10px;
+  }
+
+  .category-section .subcategory-description {
+    font-size: medium;
+  }
+
+  .see-all-button {
+    margin-left: 80%;  
+  }
+ 
+  .category-section div {
+    padding-top: 10px;
+  }
+
+  .subclass{
+    font-size: 20px;
+  }
+
+  .calculate-button{
+    width: 50%;
+  }
+
+  .categorydiv {
+    margin-top: 15px;
+    border-radius: 8px;
+  }
+
+  .paid-tools-section{
+margin-top: 20px;
+padding-top: 30px;
+  }
+
+  .horiimage img {
+    max-height: 250px; /* Limit the height of the image */
+  }
+
+  .paid-tools-section h2 {
+    font-size: 0.7em; /* Further reduce font size on small screens */
+  }
+
+  .paid-tools-section a img {
+    width: 120px; /* Make images fully responsive on small screens */
+    height: 30px;
+    max-width: none; /* Remove max-width restriction */
   }
 }

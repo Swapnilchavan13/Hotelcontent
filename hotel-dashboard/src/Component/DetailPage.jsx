@@ -34,7 +34,7 @@ export const DetailPage = () => {
 
   if (loading) {
     return <div>
-      <img src="https://wpamelia.com/wp-content/uploads/2018/11/ezgif-2-6d0b072c3d3f.gif" alt="" />
+      <img className='load' src="https://wpamelia.com/wp-content/uploads/2018/11/ezgif-2-6d0b072c3d3f.gif" alt="" />
       </div>;
   }
 
