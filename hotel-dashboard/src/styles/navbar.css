@@ -6,7 +6,6 @@
     padding: 10px 20px;
     background-color: #333;
     color: #fff;
-    /* position: relative; */
   }
   
   .logo a {
@@ -15,6 +14,15 @@
     color: #fff;
     text-decoration: none;
   }
+.powered{
+  margin-left: 10px;
+}
+
+.userimg{
+  width: 40px;
+  border-radius: 50%;
+  margin-top: 10px;
+}
 
   .logo img{
     width: 10%;
@@ -26,11 +34,17 @@
     display: flex;
     margin: 0;
     padding: 0;
+
   }
   
   .navLinks li {
     margin-left: 20px;
     cursor: pointer;
+  }
+
+  .navLinks .loginbtn{
+    position: absolute;
+    margin: 10px 70px 10px -40px;  
   }
   
   .navLinks a {
@@ -81,6 +95,15 @@
   .logout-button:hover {
     text-decoration: underline;
   }
+
+  .nettzero-logo {
+    width: 130px; /* Adjust size as needed */
+    height: auto;
+    margin-left: 8px; /* Space between the text and the image */
+    border-radius: 10px;
+    vertical-align: middle;
+  }
+  
   
   /* Responsive design */
   @media (max-width: 768px) {
@@ -91,15 +114,10 @@
     .user-name{
       font-size: 13px;
     }
-   
-    
-    .navbar {
-      align-items: flex-start;
-    }
   
     .navLinks {
-      flex-direction: column;
       width: 100%;
+      flex-direction: row
     }
   
     .navLinks li {
@@ -109,6 +127,28 @@
 
    .navLinks li{
     margin-left: 20px;
+   }
+
+   .userimg{
+    width: 35px;
+    margin-left: -40px;
+    border-radius: 50%;
+    margin-top: 4px;
+  }
+
+   /* .powerclass{
+    margin-top: -20px !important;
+   } */
+
+   .powered{
+    font-size: 10px;
+    margin-left: -2px;
+   }
+
+   .nettzero-logo{
+    width: 120%;
+    margin-left: -2px;
+
    }
   }
   

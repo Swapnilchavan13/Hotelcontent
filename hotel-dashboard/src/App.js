@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Login } from './Component/Login';
@@ -31,6 +31,7 @@ function App() {
           toastClassName="custom-toast" // Apply custom CSS class
         />
         <Routes>
+        <Route path="/" element={<Navigate to="/esg" />} /> {/* Redirect from / to /esg */}
           <Route path="/esg" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cms" element={<CMSDashboard />} />

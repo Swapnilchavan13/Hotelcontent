@@ -21,7 +21,11 @@ export const Navbar = () => {
               onMouseEnter={handleMouseEnter} 
               onMouseLeave={handleMouseLeave}>
             {/* Display user property name or mobile number */}
-            <span className='user-name'>Hi, {user.propertyName || user.mobileNumber}</span> 
+            {/* <span className='user-name'>Hi, {user.propertyName || user.mobileNumber}</span>  */}
+            <span>
+            <img className='userimg' src="https://cdn.vectorstock.com/i/500p/53/42/user-member-avatar-face-profile-icon-vector-22965342.jpg" alt="User Avatar" />
+
+            </span>
             
             {/* Dropdown menu with more details */}
             {isDropdownOpen && (
@@ -40,11 +44,19 @@ export const Navbar = () => {
           </li>
         ) : (
           <li>
-            <Link to="/login">Login</Link>
+            <span className='loginbtn'>
+              <Link to="/login">Login</Link>
+              {/* Add the nettzero image right after the Login text */}
+            </span>
           </li> 
         )}
+        <li className='powerclass'>
+        <span>
+                <span className='powered'>Powered by</span><br />
+                <img src="nettzero.jpg" alt="NettZero" className="nettzero-logo" />
+        </span>
+        </li>
       </ul>
     </nav>
   );
 };
-  

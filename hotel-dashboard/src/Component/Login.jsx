@@ -87,7 +87,7 @@ export const Login = () => {
         </div>
         <div style={{display:'flex', justifyContent:'space-between'}}>
 
-        <Link to='/'>
+        <Link to='/esg'>
         <p style={{color: 'blue'}}>Create an account</p>
         </Link>
         {error && <p className="error-message">{error}</p>}
