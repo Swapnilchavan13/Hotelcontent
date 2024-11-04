@@ -369,6 +369,89 @@ border-radius: 10px;
 /* /////// */
 
 
+/* Reports CSS */
+
+.reports-section {
+  margin: 20px;
+  text-align: center;
+}
+
+.report-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.download-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.download-button:hover {
+  background-color: #0056b3;
+}
+ /* /////////////////////// */
+
+
+ .coming-soon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 50px auto;
+  padding: 40px;
+  background: linear-gradient(135deg, #f7f7f7, #eaeaea);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  max-width: 600px;
+  text-align: center;
+}
+
+.coming-soon h2 {
+  font-size: 46px;
+  color: #333;
+  margin-bottom: 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.coming-soon p {
+  font-size: 40px;
+  color: #666;
+  margin-top: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.coming-soon p::before {
+  font-size: 24px;
+}
+
+.coming-soon p::after {
+  font-size: 24px;
+}
+
+@media (max-width: 768px) {
+  .coming-soon {
+    padding: 30px;
+  }
+
+  .coming-soon h2 {
+    font-size: 28px;
+  }
+
+  .coming-soon p {
+    font-size: 18px;
+  }
+}
+
+
+
+
+
 html, body {
   margin: 0;
   padding: 0;

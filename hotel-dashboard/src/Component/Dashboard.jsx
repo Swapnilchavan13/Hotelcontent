@@ -31,7 +31,14 @@ export const Dashboard = () => {
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
     setSelectedSubCategory('');
-    setShowPaidToolsContent(category === 'Paid Tools'); // Show paid tools content when "Paid Tools" is selected
+    // setShowPaidToolsContent(category === 'Paid Tools'); // Show paid tools content when "Paid Tools" is selected
+
+
+       // Redirect to the specified URL if the category is "Paid Tools"
+       if (category === 'Paid Tools') {
+        window.open('https://climescore.com/user/login', '_blank');
+    }
+    
   };
 
   const handleSubCategoryChange = (subCategory) => {
@@ -127,13 +134,14 @@ export const Dashboard = () => {
     <>
       <div className='seperatecategorydiv'>
         <div className='category-buttons' id='categorybuttons'>
-          <button className={`category-button ${selectedCategory === 'All' ? 'active' : ''}`} onClick={() => handleCategoryChange('All')}>All Categories</button>
+          {/* <button className={`category-button ${selectedCategory === 'All' ? 'active' : ''}`} onClick={() => handleCategoryChange('All')}>All Categories</button> */}
           <button className={`category-button ${selectedCategory === 'Knowledge Portal' ? 'active' : ''}`} onClick={() => handleCategoryChange('Knowledge Portal')}>Knowledge Portal</button>
-          {/* <button className={`category-button ${selectedCategory === 'Paid Tools' ? 'active' : ''}`} onClick={() => handleCategoryChange('Paid Tools')}>Paid Tools</button> */}
+          <button className={`category-button ${selectedCategory === 'Paid Tools' ? 'active' : ''}`} onClick={() => handleCategoryChange('Paid Tools')}>Paid Tools</button>
           <button className={`category-button ${selectedCategory === 'Reports' ? 'active' : ''}`} onClick={() => handleCategoryChange('Reports')}>Reports</button>
           <button className={`category-button ${selectedCategory === 'Marketplace' ? 'active' : ''}`} onClick={() => handleCategoryChange('Marketplace')}>Marketplace</button>
         </div>
       </div>
+
 
       {/* Show hardcoded content for Paid Tools */}
       
@@ -142,7 +150,7 @@ export const Dashboard = () => {
          <div className='horiimage'>
             <img src="Pathways_Image.png" alt="" />
           </div>
-        <div className="paid-tools-content">
+        {/* <div className="paid-tools-content">
          
           <div className="paid-tools-section">
             <h2>Measure, audit and verify your sustainability practices</h2>
@@ -156,11 +164,21 @@ export const Dashboard = () => {
               <img src="https://www.impartcollective.com/assets/images/website-logo-1-384x132.png" alt="Report Sustainability" />
             </a>
           </div>
-        </div>
+        </div> */}
         </>
       )}
 
-      {!showPaidToolsContent && (
+         {/* Only show "Coming Soon" for Marketplace */}
+    {selectedCategory === 'Marketplace' && (
+      <div className='coming-soon'>
+        <h2>Marketplace</h2>
+        <p>Coming Soon</p>
+      </div>
+    )}
+
+
+
+{selectedCategory !== 'Marketplace' && !showPaidToolsContent && (
         <>
           {selectedCategory !== 'All' && (
             <div className='subcategory-buttons' id='subcategorybuttons'>
@@ -177,6 +195,21 @@ export const Dashboard = () => {
           <div className='horiimage'>
             <img data-aos="zoom-out" src="Pathways_Image.png" alt="" />
           </div>
+
+          {selectedCategory === 'Reports' && (
+  <div className="reports-section">
+    <h1>Download Reports</h1>
+    <div className="report-links">
+      <a href="/Impact Report - Chambal Safari Lodge.pdf" download className="report-link" target="_blank" rel="noopener noreferrer">
+        <button className="download-button">Impact Report - Chambal Safari Lodge</button>
+      </a>
+      <a href="/NZ_RARE_Executive Summary 2024..pdf" download className="report-link" target="_blank" rel="noopener noreferrer">
+        <button className="download-button">NZ RARE Executive Summary 2024</button>
+      </a>
+    </div>
+  </div>
+)}
+
 
           <div className='categorydiv'>
             {sortedGroupedDataKeys.map((subCategory, index) => (
