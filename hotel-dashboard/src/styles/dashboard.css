@@ -365,6 +365,55 @@ border-radius: 10px;
 .calculate-button:hover {
   background-color: #024285; /* Darker shade on hover */
 }
+
+
+.buttonsdiv {
+
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* Keeps the grid layout */
+  gap: 3px;
+  position: absolute; /* Allows positioning relative to the nearest positioned ancestor */
+  right: 10px; /* Aligns the div to the right side */
+
+}
+
+
+.Community {
+  text-align: center;
+  padding: 20px;
+  background-color: #f9f9f9; /* Light gray background for contrast */
+  border: 1px solid #ddd; /* Subtle border */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  margin: auto;
+}
+
+
+.Community p {
+  font-size: 36px;
+  color: #555; /* Medium gray text */
+  margin-bottom: 20px;
+  line-height: 1.6; /* Improve readability */
+}
+
+.Community a {
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.Community img {
+  width: 400px; /* Fixed width for the logo */
+  height: auto; /* Maintain aspect ratio */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+}
+
+.Community img:hover {
+  transform: scale(1.1); /* Slight zoom on hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Add a shadow effect */
+}
+
+
  
 /* /////// */
 
@@ -430,6 +479,7 @@ border-radius: 10px;
   font-size: 24px;
 }
 
+
 .coming-soon p::after {
   font-size: 24px;
 }
@@ -446,10 +496,26 @@ border-radius: 10px;
   .coming-soon p {
     font-size: 18px;
   }
+  .category-button.community-button {
+    display: none;
+  }
+  #categorybuttons button{
+    width: 100%;
+  }
+
 }
 
+@media (max-width: 1208px) {
 
+  .category-button.community-button {
+    display: none;
+  }
 
+  #categorybuttons button{
+    width: 18%;
+  }
+
+}
 
 
 html, body {
@@ -471,6 +537,9 @@ html, body {
     font-size: 1.5rem;
   }
   
+  #categorybuttons button{
+    width: 100%;
+  }
 
   .category-buttons {
     display: flex;

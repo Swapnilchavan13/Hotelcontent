@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'; 
 import { useAuth } from './AuthContex';
 import '../styles/dashboard.css';
 import { Link } from 'react-router-dom';
@@ -65,6 +65,7 @@ export const Dashboard = () => {
     'Biodiversity',
     'Carbon Credit Programs',
     'Emissions Measurement',
+    'Glossary',  // Added "Glossary" here
     'Sustainable Sourcing',
     'Sustainable Services'
   ];
@@ -113,6 +114,8 @@ export const Dashboard = () => {
     switch (subCategory) {
       case 'GHG Emissions':
         return ['A detailed introduction about GHG emissions', 'and their various types.'];
+      case 'Glossary':  // Description for "Glossary"
+        return ['Explore various tools and resources.'];
       case 'Water Management':
         return ['Insights on effective water management and', 'conservation techniques.'];
       case 'Waste Management':
@@ -139,6 +142,12 @@ export const Dashboard = () => {
           <button className={`category-button ${selectedCategory === 'Paid Tools' ? 'active' : ''}`} onClick={() => handleCategoryChange('Paid Tools')}>Paid Tools</button>
           <button className={`category-button ${selectedCategory === 'Reports' ? 'active' : ''}`} onClick={() => handleCategoryChange('Reports')}>Reports</button>
           <button className={`category-button ${selectedCategory === 'Marketplace' ? 'active' : ''}`} onClick={() => handleCategoryChange('Marketplace')}>Marketplace</button>
+          <button 
+  className={`category-button community-button ${selectedCategory === 'Community' ? 'active' : ''}`} 
+  onClick={() => handleCategoryChange('Community')}
+>
+  Community
+</button>
         </div>
       </div>
 
@@ -177,19 +186,27 @@ export const Dashboard = () => {
     )}
 
 
-
 {selectedCategory !== 'Marketplace' && !showPaidToolsContent && (
         <>
           {selectedCategory !== 'All' && (
-            <div className='subcategory-buttons' id='subcategorybuttons'>
-              {subCategories.map((subCategory, index) => (
-                <button key={index}
-                  className={`subcategory-button ${selectedSubCategory === subCategory ? 'active' : ''}`}
-                  onClick={() => handleSubCategoryChange(subCategory)}>
-                  {subCategory || 'All'}
-                </button>
-              ))}
-            </div>
+          <div className='subcategory-buttons' id='subcategorybuttons'>
+          {subCategories.map((subCategory, index) => (
+            <button 
+              key={index}
+              className={`subcategory-button ${selectedSubCategory === subCategory ? 'active' : ''}`}
+              onClick={() => {
+                handleSubCategoryChange(subCategory);
+                if (subCategory === 'Glossary') {
+                  // Open the PDF in a new tab
+                  window.open('/Glossary.pdf', '_blank');
+                }
+              }}
+            >
+              {subCategory || 'All'}
+            </button>
+          ))}
+        </div>
+        
           )}
 
           <div className='horiimage'>
@@ -210,22 +227,61 @@ export const Dashboard = () => {
   </div>
 )}
 
+{selectedCategory === 'Community' && (
+  <div className='Community'>
+    <p>Welcome to the community of ISN members. Please see our growing list of partners here:</p>
+    <a href="https://www.chambalsafari.com/" target="_blank" rel="noopener noreferrer">
+      <img 
+        src="https://www.chambalsafari.com/images/logo.png" 
+        alt="ISN Partners Logo" 
+      />
+    </a>
+  </div>
+)}
 
-          <div className='categorydiv'>
-            {sortedGroupedDataKeys.map((subCategory, index) => (
-              <div key={index} className='category-section'>
-                <div className='category-header'>
-                <h2 className='subclass'>
-                 {subCategory}
-    {(subCategory === 'GHG Emissions' || subCategory === 'Water Management') && (
-      <button 
-        className="calculate-button" 
-        onClick={() => handleButtonClick(subCategory)}
-      >
-        {subCategory === 'GHG Emissions' ? 'Calculate Your Carbon Balance Sheet' : 'Calculate Your Water Balance Sheet'}
-      </button>
-    )}
-  </h2>
+
+
+
+
+<div className='categorydiv'>
+  {sortedGroupedDataKeys.map((subCategory, index) => (
+    <div key={index} className='category-section'>
+      <div className='category-header'>
+        <h2 className='subclass'>
+          {subCategory}
+          {(subCategory === 'GHG Emissions' || subCategory === 'Water Management') && (
+            <div className='buttonsdiv'>
+              <button 
+                className="calculate-button" 
+                onClick={() => handleButtonClick(subCategory)}
+              >
+                {subCategory === 'GHG Emissions' ? 'Build Your Carbon Balance Sheet' : 'Build Your Water Balance Sheet'}
+              </button>
+              <button 
+                className="calculate-button" 
+                onClick={() => window.open('/Carbon emissions cal.pdf', '_blank')}
+              >
+                How to Build Your Balance Sheet
+              </button>
+              <button 
+                className="calculate-button"  
+                onClick={() => window.open('/illustrative.pdf', '_blank')}
+              >
+                An Illustrative Example
+              </button>
+            </div>
+          )}
+           {subCategory === 'Waste Management' && (
+            <div className='buttonsdiv'>
+              <button 
+                className="calculate-button" 
+               onClick={() => window.open('/Waste_management.pdf', '_blank')}
+              >
+                How to Manage Your Waste
+              </button>
+            </div>
+          )}
+        </h2>
                   <p className='subcategory-description'>
                     {getSubCategoryDescription(subCategory).map((line, idx) => (
                       <span key={idx} style={{ display: 'block' }}>{line}</span>
@@ -235,8 +291,9 @@ export const Dashboard = () => {
                     <Link to={`/allitems/${encodeURIComponent(subCategory)}`} className="see-all-button">
                       See All
                     </Link>
-                  </span>
+                  </span>     
                 </div>
+                
                 <div className='image-scroll'>
                   {groupedData[subCategory].map((item, idx) => {
                     const isExpanded = expandedDescriptions[idx];

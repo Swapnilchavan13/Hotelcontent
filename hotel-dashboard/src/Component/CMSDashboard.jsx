@@ -54,7 +54,8 @@ export const CMSDashboard = () => {
 
   const getSubCategories = (category) => {
     const subCategoryMap = {
-      'Knowledge Portal': ['GHG Emissions', 'Water Management', 'Waste Management', 'Biodiversity', 'Carbon Credit Programs'],
+      'Knowledge Portal': ['GHG Emissions', 'Water Management', 'Waste Management', 'Biodiversity', 'Carbon Credit Programs', 'Grossary',
+      ],
       'Marketplace': ['Sustainable Sourcing', 'Sustainable Services']
     };
     return subCategoryMap[category] || [];
