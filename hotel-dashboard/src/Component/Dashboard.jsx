@@ -264,7 +264,7 @@ export const Dashboard = () => {
                 How to Build Your Balance Sheet
               </button>
               <button 
-                className="calculate-button"  
+                className="calculate-button"
                 onClick={() => window.open('/illustrative.pdf', '_blank')}
               >
                 An Illustrative Example

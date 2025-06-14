@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from './AuthContex';
 import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify'; // Import toast
+import { toast } from 'react-toastify';
+import emailjs from 'emailjs-com'; // ⬅️ Add EmailJS
 import '../styles/login.css';
 
 export const Login = () => {
@@ -9,11 +10,13 @@ export const Login = () => {
   const [mobileNumber, setMobileNumber] = useState('');
   const [loginPin, setLoginPin] = useState('');
   const [error, setError] = useState('');
-  const { login, user } = useAuth(); // Include user from useAuth
+  const { login, user } = useAuth();
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
+
+
   useEffect(() => {
-    // If user is already logged in, redirect to dashboard
     if (user) {
       navigate('/dashboard');
     }
@@ -36,28 +39,63 @@ export const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Find the user by matching the mobile number and login pin
     const user = merchants.find(
       (merchant) => merchant.mobileNumber === mobileNumber && merchant.loginPin === loginPin
     );
 
     if (user) {
-      login(user); // Call login from AuthContext with the full user object
+      login(user);
       toast.success('Login successful!');
-      navigate('/dashboard'); // Redirect to the dashboard
+      navigate('/dashboard');
     } else {
       setError('Invalid mobile number or PIN');
       toast.error('Invalid mobile number or PIN');
     }
   };
 
+const handleForgotPassword = () => {
+  const user = merchants.find((merchant) => merchant.mobileNumber === mobileNumber.trim());
+
+  if (!user) {
+    toast.error('Mobile number not found!');
+    return;
+  }
+
+  setLoading(true);
+
+  const templateParams = {
+    to_name: user.contactPerson || 'User',
+    to_email: user.email,
+    login_pin: user.loginPin,
+  };
+
+  console.log("Sending to:", templateParams); // 🧪 For testing
+
+  emailjs
+    .send(
+      'service_rm6t0l9',
+      'template_knh8u7c',
+      templateParams,
+      '4_SUObyufQCf-gtms'
+    )
+    .then(() => {
+      toast.success('Login PIN sent to your registered email!');
+      setLoading(false);
+    })
+    .catch((err) => {
+      console.error(err);
+      toast.error('Failed to send email.');
+      setLoading(false);
+    });
+};
+
+
   return (
-    <div className="login-container" style={{ 
-      backgroundImage: "url('/bg2.png')", 
-      backgroundSize: 'cover', 
-      backgroundPosition: 'center', 
-      backgroundRepeat: 'no-repeat' 
+    <div className="login-container" style={{
+      backgroundImage: "url('/bg2.png')",
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
     }}>
       <div id='centreimgdiv'>
         <img className='loginpinimg' src="Localite_icon.png" alt="" />
@@ -85,14 +123,16 @@ export const Login = () => {
             required
           />
         </div>
-        <div style={{display:'flex', justifyContent:'space-between'}}>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Link to='/esg'>
+            <p style={{ color: 'blue' }}>Create an account</p>
+          </Link>
+         <p style={{ color: 'red', cursor: 'pointer' }} onClick={handleForgotPassword}>
+  {loading ? 'Sending...' : 'Forgot password?'}
+</p>
 
-        <Link to='/esg'>
-        <p style={{color: 'blue'}}>Create an account</p>
-        </Link>
-        {error && <p className="error-message">{error}</p>}
-        <p style={{color: 'red'}}>Forgot password?</p>
         </div>
+        {error && <p className="error-message">{error}</p>}
         <br />
         <button type="submit">Login</button>
       </form>
