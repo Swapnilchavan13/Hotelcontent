@@ -186,33 +186,46 @@ export const Dashboard = () => {
     )}
 
 
+
 {selectedCategory !== 'Marketplace' && !showPaidToolsContent && (
         <>
           {selectedCategory !== 'All' && (
           <div className='subcategory-buttons' id='subcategorybuttons'>
           {subCategories.map((subCategory, index) => (
             <button 
-              key={index}
-              className={`subcategory-button ${selectedSubCategory === subCategory ? 'active' : ''}`}
-              onClick={() => {
-                handleSubCategoryChange(subCategory);
-                if (subCategory === 'Glossary') {
-                  // Open the PDF in a new tab
+            key={index}
+            className={`subcategory-button ${selectedSubCategory === subCategory ? 'active' : ''}`}
+            onClick={() => {
+              handleSubCategoryChange(subCategory);
+              if (subCategory === 'Glossary') {
+                // Open the PDF in a new tab
                   window.open('/Glossary.pdf', '_blank');
                 }
               }}
-            >
+              >
               {subCategory || 'All'}
             </button>
           ))}
         </div>
         
-          )}
+      )}
 
           <div className='horiimage'>
             <img data-aos="zoom-out" src="Pathways_Image.png" alt="" />
           </div>
 
+
+<div style={{ display: 'flex',justifyContent:'space-evenly', margin: '5px' }}>
+  <a href="/ITINERARY CARBON CALCULATOR.xlsx" download="ITINERARY-CARBON-CALCULATOR.xlsx">
+    <button>ITINERARY CARBON CALCULATOR</button>
+  </a>
+  <a href="/FTO DMC CARBON BALANCE SHEET.xlsx" download="FTO-DMC-CARBON-BALANCE-SHEET.xlsx">
+    <button>FTO - DMC - CARBON BALANCE SHEET</button>
+  </a>
+  <a href="/HOTEL CARBON BALANCE SHEET.xlsx" download="HOTEL-CARBON-BALANCE-SHEET.xlsx">
+    <button>HOTEL CARBON BALANCE SHEET</button>
+  </a>
+</div>
           {selectedCategory === 'Reports' && (
   <div className="reports-section">
     <h1>Download Reports</h1>
