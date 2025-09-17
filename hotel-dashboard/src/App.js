@@ -37,8 +37,7 @@ function App() {
           <Route path="/cms" element={<CMSDashboard />} />
           <Route path='/detail/:title' element={<DetailPage />} />
           <Route path='/allitems/:subCategory' element={<AllItems />} />
-          <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
-
+          <Route path="/dashboard"  element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
