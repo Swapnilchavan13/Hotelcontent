@@ -32,7 +32,7 @@ function App() {
         />
         <Routes>
         <Route path="/" element={<Navigate to="/esg" />} /> {/* Redirect from / to /esg */}
-          <Route path="/esg" element={<Home />} />
+          <Route path="/esg" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cms" element={<CMSDashboard />} />
           <Route path='/detail/:title' element={<DetailPage />} />
