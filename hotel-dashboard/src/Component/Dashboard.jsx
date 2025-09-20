@@ -13,6 +13,54 @@ export const Dashboard = () => {
   const [data, setData] = useState([]); // State to hold fetched data
   const [showPaidToolsContent, setShowPaidToolsContent] = useState(false); // State to show paid tools content
 
+
+ useEffect(() => {
+  const startTime = Date.now();
+
+  // Generate unique ID if not exists
+  let userId = localStorage.getItem("visitorId");
+  if (!userId) {
+    userId = crypto.randomUUID(); // built-in unique ID generator
+    localStorage.setItem("visitorId", userId);
+  }
+
+  const logVisit = async (timeSpent) => {
+    try {
+      await fetch("http://localhost:3005/visit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId,
+          userAgent: navigator.userAgent,
+          ip: window.location.hostname, // optional
+          timeSpent,
+        }),
+      });
+    } catch (err) {
+      console.error("Error logging visit:", err);
+    }
+  };
+
+  // First log (enter)
+  logVisit(0);
+
+  // Log when leaving (time spent)
+  const handleBeforeUnload = () => {
+    const timeSpent = Math.floor((Date.now() - startTime) / 1000);
+    logVisit(timeSpent);
+  };
+
+  window.addEventListener("beforeunload", handleBeforeUnload);
+
+  return () => {
+    window.removeEventListener("beforeunload", handleBeforeUnload);
+  };
+}, []);
+
+
+
+
+
   useEffect(() => {
     // Fetch data from API
     const fetchData = async () => {
