@@ -26,7 +26,7 @@ export const Dashboard = () => {
 
   const logVisit = async (timeSpent) => {
     try {
-      await fetch("http://localhost:3005/visit", {
+      await fetch("https://localitebackend.localite.services/visit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
