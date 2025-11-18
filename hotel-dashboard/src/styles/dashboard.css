@@ -757,3 +757,71 @@ padding-top: 30px;
     max-width: none; /* Remove max-width restriction */
   }
 }
+
+
+
+/* Default (desktop) */
+.btndiv1 {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 5px;
+  gap: 10px;
+}
+
+.btndiv1 button {
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Reports Section */
+.report-links {
+  display: flex;
+  gap: 10px;
+  justify-content: space-evenly;
+}
+
+.report-links .download-button {
+  padding: 10px 15px;
+  font-size: 14px;
+}
+
+/* ----------- MOBILE VIEW ----------- */
+@media (max-width: 768px) {
+  .btndiv1 {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btndiv1 a {
+    width: 100%;
+  }
+
+  .btndiv1 button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .report-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .report-links a {
+    width: 100%;
+  }
+
+  .download-button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .Community img {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .calculate-button{
+    display: none;
+  }
+}

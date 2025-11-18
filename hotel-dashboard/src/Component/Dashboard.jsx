@@ -263,7 +263,7 @@ export const Dashboard = () => {
           </div>
 
 
-<div style={{ display: 'flex',justifyContent:'space-evenly', margin: '5px' }}>
+<div className='btndiv1'>
   <a href="/ITINERARY CARBON CALCULATOR.xlsx" download="ITINERARY-CARBON-CALCULATOR.xlsx">
     <button>ITINERARY CARBON CALCULATOR</button>
   </a>
